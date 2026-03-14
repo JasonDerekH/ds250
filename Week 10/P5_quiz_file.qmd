@@ -1,0 +1,30 @@
+
+```{python}
+import pandas as pd
+import numpy as np
+
+
+```
+
+
+```{python}
+url = 'https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv'
+df = pd.read_csv(url, encoding="ISO-8859-1")
+
+seen_columns = df.columns[1:7]  # Columns 2 to 7 contain responses about seeing the movies
+gender_column = df.columns[33]  # Replace 'gender_index' with the actual index
+
+# Convert responses to boolean (Yes -> True, No or NaN -> False)
+df_seen = df[seen_columns].applymap(lambda x: x == "Yes")
+
+df_male = df[df[gender_column] == "Male"]
+
+# Identify male respondents who have seen at least one movie
+seen_at_least_one_male = df_male[seen_columns].applymap(lambda x: x == "Yes").any(axis=1)
+
+# Calculate percentage
+percentage_seen_male = seen_at_least_one_male.mean() * 100
+
+# Print result to four decimal places
+print(f"{percentage_seen_male:.4f}%")
+```

@@ -1,0 +1,141 @@
+---
+title: "Untitled"
+format: html
+---
+
+Load your libraries:
+
+
+```{python}
+# Read in libraries
+import pandas as pd
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html(isolated_frame=True)
+url = 'https://raw.githubusercontent.com/byuidatascience/data4missing/master/data-raw/flights_missing/flights_missing.json'
+df = pd.read_json(url)
+df.sort_values(by=['month'], ascending=True, na_position='first', inplace=True)
+df
+missing = df.isna().sum()
+print(missing)
+```
+```{python}
+#import sys
+#!{sys.executable} -m pip install requests
+# %%
+# The usuals
+import pandas as pd
+import numpy as np
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+Let's create a toy dataset to practice on
+
+```{python}
+# %%
+# missing data
+df = (pd.DataFrame(
+    np.random.randn(5, 3), 
+    index=['a', 'c', 'e', 'f', 'h'],
+    columns=['one', 'two', 'three'])
+  .assign(
+    six = [np.nan, np.nan, 2, 2, 1],
+    seven = [4, 5, 5, np.nan, np.nan],
+    four = ['bar', '', 'bar', 'bar', np.nan], 
+    five = lambda x: x.one > 0
+)
+  )
+df
+```
+
+
+
+## Dealing with missing data
+
+Two main ways to deal with NA's:
+- fillna()
+  - Pro: slick if you wnat to fill in various columns iwth different values
+  - Con: it can ony handle missing values
+- replace()
+  - Pro: you can work wit/replace any value, not just NaN
+  - Con: messy code when plugging in a unique value for different columns (dictionaries).
+
+### fillna()
+
+*note: use column.value_counts() to find the different unique values in a column.
+```{python}
+df.og = df
+
+df.seven.fillna(df.seven.mean()).sum()
+df.seven.fillna(df.seven.mean()) + df.six.fillna(df.six.mean())
+```
+
+```{python}
+fillvalues = {'six': df.six.mean(), 'seven': df.seven.mean(), 'four': 'line'}
+
+df_cleaned = df.fillna(value = fillvalues)
+```
+
+### replace()
+```{python}
+df.seven.replace(np.nan, 0)
+df.seven.replace(np.nan, df.seven.mean)
+
+df.replace({np.nan: 0,
+            '': 'new_thing'})
+```
+Replace different values in different columns
+```{python}
+mean_of_one = df[df['one']<0].mean()
+
+df.replace({'six': {np.nan: df.six.mean()},
+                    'seven': {np.nan: df.seven.mean()},
+                    'four': {'': 'new thing', np.nan: 'line'}})
+```
+
+```{python}
+df.five.astype(int)
+```
+
+```{python}
+df.ffill()
+df.seven.ffill()
+```
+
+```{python}
+df.dropna()
+df.dropna(subset = ['seven', 'six', 'four'], thresh = 2)
+
+```
+## Write it out to JSON
+
+This code selects the first row of the dataset (all columns), and then writes it out to JSON.
+
+```{python}
+df.iloc[0:1, ].to_json
+```
+
+```{python}
+
+```
+
+
+## Practice on the cars dataset
+
+First, let's read in the json file
+
+```{python}
+url = "https://github.com/byuidatascience/data4missing/raw/master/data-raw/mtcars_missing/mtcars_missing.json"
+cars_json = pd.read_json(url)
+cars_json
+```
+
+I recommend giving the dataset you will be cleaning/altering another name so that you don't overwrite the original
+
+```{python}
+#dup df for cleansing
+cars_json_clean = cars_json
+
+```

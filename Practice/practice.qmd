@@ -1,0 +1,138 @@
+```{python}
+
+# Read in libraries
+import pandas as pd
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html(isolated_frame=True)
+df = pd.read_json("https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json")
+
+```
+
+<!-- pseudo for sub-list sort -->
+
+combine(source, destination, iBegin1, iBegin2, iEnd2)
+
+    // The first run goes from:
+    // iBegin1 up to (but not including) iBegin2
+    iEnd1 <- iBegin2
+
+    // We will fill destination starting at iBegin1
+    // and ending at iEnd2 - 1
+    FOR iDestination <- iBegin1 ... iEnd2
+
+        // CONDITION EXPLANATION:
+        // We take from the first run IF:
+        // 1. There are still elements left in run 1
+        // AND
+        // 2. Either run 2 is exhausted
+        //    OR the current element in run 1 is smaller
+        IF (iBegin1 < iEnd1) AND 
+           (iBegin2 == iEnd2 OR source[iBegin1] < source[iBegin2])
+
+            // Copy element from first run into destination
+            destination[iDestination] <- source[iBegin1]
+
+            // Move pointer forward in run 1
+            iBegin1++
+
+        ELSE
+
+            // Otherwise take element from second run
+            destination[iDestination] <- source[iBegin2]
+
+            // Move pointer forward in run 2
+            iBegin2++
+
+    // At this point, the two runs have been merged
+    RETURN destination
+
+sort(array)
+
+    // Store total size of the array
+    size <- array.length
+
+    // src is the array we read from this pass
+    src <- array
+
+    // des is the array we write merged runs into
+    des <- new array same size as source
+
+    // num tracks how many sorted runs were found in a pass
+    // We initialize it > 1 so the loop runs at least once
+    num <- 2
+
+    // Continue performing merge passes
+    // until only one run remains (fully sorted)
+    WHILE num > 1
+
+        // Reset run counter for this pass
+        num <- 0
+
+        // Start scanning from beginning of array
+        iBegin1 <- 0
+
+        // Process entire array by detecting runs
+        WHILE iBegin1 < size
+
+            // -------- FIND FIRST SORTED RUN --------
+
+            // Assume run has at least one element
+            iEnd1 <- iBegin1 + 1
+
+            // Extend run forward while elements
+            // are still in non-decreasing order
+            WHILE iEnd1 < size AND 
+                  src[iEnd1 - 1] <= src[iEnd1]
+
+                iEnd1++
+            
+            // At this point:
+            // First run = [iBegin1, iEnd1]
+
+            // -------- FIND SECOND SORTED RUN --------
+
+            // Second run begins where first run ends
+            iBegin2 <- iEnd1
+
+            IF iBegin2 < size
+                // If there's at least one element left,
+                // start building second run
+                iEnd2 <- iBegin2 + 1
+            ELSE 
+                // No second run exists
+                iEnd2 <- iBegin2
+
+            // Extend second run while sorted
+            WHILE iEnd2 < size AND 
+                  src[iEnd2 - 1] <= src[iEnd2]
+
+                iEnd2++
+
+            // We have now identified:
+            // Run 1: [iBegin1, iEnd1)
+            // Run 2: [iBegin2, iEnd2)
+
+            // Count how many runs we encountered
+            // This is how we detect when the array
+            // becomes fully sorted
+            num++
+
+            // -------- MERGE THE TWO RUNS --------
+
+            combine(src, des, iBegin1, iBegin2, iEnd2)
+
+            // Move forward to next section of array
+            iBegin1 <- iEnd2
+
+        // Finished one full pass over the array
+
+        // Swap roles:
+        // Next pass will read from des
+        // and write into src
+        SWAP src, des
+
+    // Loop exits when num == 1
+    // meaning only one sorted run exists
+
+    RETURN src

@@ -1,0 +1,53 @@
+```{python}
+# %%
+# Read in libraries
+import pandas as pd
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html(isolated_frame=True)
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+df = pd.read_csv("https://github.com/byuidatascience/data4dwellings/raw/master/data-raw/dwellings_ml/dwellings_ml.csv")
+```
+
+```{python}
+# target variable
+y = df['before1980']
+
+# features
+X = df.drop(columns=['before1980'])
+
+# train/test split
+x_train, x_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=.34,
+    random_state=76
+)
+
+# average of first 10 testing y values
+avg_first10 = y_test.head(10).mean()
+
+print(avg_first10)
+```
+
+```{python}
+from sklearn.model_selection import train_test_split
+
+# Define features and target
+X = df.drop(columns=['before1980'])
+y = df['before1980']
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=.34,
+    random_state=76
+)
+
+# Average of the first 10 training sprice values
+avg_sprice = X_train['sprice'].head(10).mean()
+
+print(avg_sprice)
+```

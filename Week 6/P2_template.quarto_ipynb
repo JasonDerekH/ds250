@@ -1,0 +1,349 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Client Report - Late Flights & Missing Data (JSON)\"\n",
+        "subtitle: \"Course DS 250\"\n",
+        "author: \"Jason Hollingsworth\"\n",
+        "format:\n",
+        "  html:\n",
+        "    self-contained: true\n",
+        "    page-layout: full\n",
+        "    title-block-banner: true\n",
+        "    toc: true\n",
+        "    toc-depth: 3\n",
+        "    toc-location: body\n",
+        "    number-sections: false\n",
+        "    html-math-method: katex\n",
+        "    code-fold: true\n",
+        "    code-summary: \"Show the code\"\n",
+        "    code-overflow: wrap\n",
+        "    code-copy: hover\n",
+        "    code-tools:\n",
+        "        source: false\n",
+        "        toggle: true\n",
+        "        caption: See code\n",
+        "execute: \n",
+        "  warning: false\n",
+        "    \n",
+        "---"
+      ],
+      "id": "1a236bae"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "from lets_plot import *\n",
+        "\n",
+        "LetsPlot.setup_html(isolated_frame=True)\n",
+        "\n",
+        "#I used ChatGPT to help me modify and expedite code in the last three questions"
+      ],
+      "id": "90b479c5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n",
+        "\n",
+        "# Include and execute your code here\n",
+        "df = pd.read_json(\"https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json\")"
+      ],
+      "id": "9c915886",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Elevator pitch\n",
+        "_A SHORT (2-3 SENTENCES) PARAGRAPH THAT `DESCRIBES KEY INSIGHTS` TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS._ (Note: this is not a summary of the project, but a summary of the results.)\n",
+        "\n",
+        "_A Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client._\n",
+        "\n",
+        "## QUESTION|TASK 1\n",
+        "\n",
+        "__Fix all of the varied missing data types in the data to be consistent (all missing values should be displayed as “NaN”).__ In your report include one record example (one row) from your new data, in the raw JSON format. Your example should display the \"NaN\" for at least one missing value.__  \n",
+        "\n",
+        "_type your results and analysis here_\n"
+      ],
+      "id": "e3e2c234"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df = df.replace(['null', None, -1, -999, 'Unknown', 'n/a'], np.nan)\n",
+        "\n",
+        "# Display one row as raw JSON with \"NaN\"\n",
+        "example_row_json = df.iloc[2].fillna(\"NaN\").to_json()\n",
+        "example_row_json\n"
+      ],
+      "id": "3b67590c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## QUESTION|TASK 2\n",
+        "\n",
+        "__Which airport has the worst delays?__ Describe the metric you chose, and why you chose it to determine the “worst” airport. Your answer should include a summary table that lists (for each airport) the total number of flights, total number of delayed flights, proportion of delayed flights, and average delay time in hours.   \n",
+        "\n",
+        "_type your results and analysis here_\n"
+      ],
+      "id": "b969dc18"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Include and execute your code here\n",
+        "\n",
+        "# Include and execute your code here\n",
+        "\n",
+        "df['num_of_flights_total'] = pd.to_numeric(df['num_of_flights_total'], errors='coerce')\n",
+        "df['num_of_delays_total'] = pd.to_numeric(df['num_of_delays_total'], errors = 'coerce')\n",
+        "df['minutes_delayed_total'] = pd.to_numeric(df['minutes_delayed_total'], errors = 'coerce')\n",
+        "\n",
+        "delay_overall = df.groupby('airport_name').agg(\n",
+        "  num_of_flights_total=('num_of_flights_total','sum'),\n",
+        "  num_of_delays_total = ('num_of_delays_total','sum'),\n",
+        "  minutes_delayed_total = ('minutes_delayed_total','sum')\n",
+        ").reset_index()\n",
+        "\n",
+        "delay_overall['proportion_of_delays'] = (delay_overall['num_of_delays_total'] / delay_overall['num_of_flights_total']) * 100\n",
+        "\n",
+        "delay_overall['proportion_of_delays'] = delay_overall['proportion_of_delays'].round(1)\n",
+        "\n",
+        "delay_overall['avg_delay_in_hours'] = delay_overall.apply(\n",
+        "  lambda x:(x['minutes_delayed_total'] / x['num_of_delays_total'] / 60)\n",
+        "  if x['num_of_delays_total'] > 0 else 0,\n",
+        "  axis = 1\n",
+        "  )\n",
+        "\n",
+        "\n",
+        "delay_overall['avg_delay_in_hours'] = delay_overall['avg_delay_in_hours'].round(3)\n",
+        "\n",
+        "#sort it descending\n",
+        "delay_overall = delay_overall.sort_values(by=[\"proportion_of_delays\",\"avg_delay_in_hours\"], ascending = [False, False])\n",
+        "delay_overall = delay_overall.reset_index(drop=True)\n",
+        "delay_overall"
+      ],
+      "id": "9a839a94",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## QUESTION|TASK 3\n",
+        "\n",
+        "__What is the best month to fly if you want to avoid delays of any length?__ Describe the metric you chose and why you chose it to calculate your answer. Include one chart to help support your answer, with the x-axis ordered by month. (To answer this question, you will need to remove any rows that are missing the `Month` variable.)  \n",
+        "\n",
+        "_type your results and analysis here_\n"
+      ],
+      "id": "7174389e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Remove rows missing Month\n",
+        "df_filtered = df.dropna(subset=['month'])\n",
+        "\n",
+        "# Ensure Month is numeric\n",
+        "df_filtered['month'] = pd.to_numeric(df_filtered['month'], errors='coerce')\n",
+        "\n",
+        "summary = df_filtered.groupby('month').agg(\n",
+        "    Total_Flights=('num_of_flights_total', 'sum'),\n",
+        "    Total_Delayed_Flights=('num_of_delays_total', 'sum')\n",
+        ").reset_index()\n",
+        "\n",
+        "summary['Proportion_Delayed_Flights'] = (\n",
+        "    summary['Total_Delayed_Flights'] / summary['Total_Flights']\n",
+        ")\n",
+        "# month ordering\n",
+        "\n",
+        "summary['month'] = pd.Categorical(\n",
+        "    summary['month'], categories=range(1,13), ordered=True\n",
+        ")\n",
+        "\n",
+        "summary"
+      ],
+      "id": "b8fc05e2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## QUESTION|TASK 4\n",
+        "\n",
+        "According to the BTS website, the “Weather” category only accounts for severe weather delays. Mild weather delays are not counted in the “Weather” category, but are actually included in both the “NAS” and “Late-Arriving Aircraft” categories. __Your job is to create a new column that calculates the total number of flights delayed by weather (both severe and mild).__ You will need to replace all the missing values in the Late Aircraft variable with the mean. Show your work by printing the first 5 rows of data in a table. Use these three rules for your calculations:  \n",
+        "\n",
+        "    a. 100% of delayed flights in the Weather category are due to weather  \n",
+        "    a. 30% of all delayed flights in the Late-Arriving category are due to weather  \n",
+        "    a. From April to August, 40% of delayed flights in the NAS category are due to weather. The rest of the months, the proportion rises to 65%    \n",
+        "\n",
+        "This was looking somewhat on point earlier\n"
+      ],
+      "id": "d7ddc711"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# df['late_aircraft_delay'] = pd.to_numeric(\n",
+        "#     df['late_aircraft_delay'], errors='coerce'\n",
+        "# )\n",
+        "\n",
+        "# df['late_aircraft_delay'] = df['late_aircraft_delay'].fillna(\n",
+        "#     df['late_aircraft_delay'].mean()\n",
+        "# )"
+      ],
+      "id": "6025edd0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# def weather_delay_calc(row):\n",
+        "#     weather = row['weather_delay']\n",
+        "#     late = row['late_aircraft_delay'] * 0.30\n",
+        "\n",
+        "#     if 4 <= row['Month'] <= 8:\n",
+        "#         nas = row['nas_delay'] * 0.40\n",
+        "#     else:\n",
+        "#         nas = row['nas_delay'] * 0.65\n",
+        "\n",
+        "#     return weather + late + nas\n",
+        "\n",
+        "# df['total_weather_delay'] = df.apply(weather_delay_calc, axis=1)\n"
+      ],
+      "id": "5935f404",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Show first five rows\n",
+        "# df[['Month', 'weather_delay', 'late_aircraft_delay', 'nas_delay', 'total_weather_delay']].head()\n"
+      ],
+      "id": "d76e7612",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## QUESTION|TASK 5\n",
+        "\n",
+        "__Using the new weather variable calculated above, create a barplot showing the proportion of all flights that are delayed by weather at each airport. Describe what you learn from this graph.__  \n",
+        "\n",
+        "You could see an apparent increase of delays with number of flights and weather"
+      ],
+      "id": "db711239"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# weather_summary = df.groupby('airport_name').agg(\n",
+        "#     Total_Flights=('num_of_flights_total', 'sum'),\n",
+        "#     Weather_Delays=('total_weather_delay', 'sum')\n",
+        "# ).reset_index()\n",
+        "\n",
+        "# weather_summary['Weather_Delay_Proportion'] = (\n",
+        "#     weather_summary['Weather_Delays'] / weather_summary['Total_Flights']\n",
+        "# )\n",
+        "\n",
+        "# (\n",
+        "#     ggplot(weather_summary,\n",
+        "#            aes(x='airport_name', y='Weather_Delay_Proportion'))\n",
+        "#     + geom_bar(stat='identity')\n",
+        "#     + coord_flip()\n",
+        "#     + labs(\n",
+        "#         title=\"Proportion of Flights Delayed by Weather by Airport\",\n",
+        "#         x=\"Airport\",\n",
+        "#         y=\"Proportion Weather Delayed\"\n",
+        "#     )\n",
+        "# )\n"
+      ],
+      "id": "7a735ba7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "\n",
+        "## STRETCH QUESTION|TASK 1\n",
+        "\n",
+        "__Which delay is the worst delay?__ Create a similar analysis as above for Weather Delay with: Carrier Delay and Security Delay. Compare the proportion of delay for each of the three categories in a Chart and a Table. Describe your results.\n",
+        "\n",
+        "_type your results and analysis here_\n"
+      ],
+      "id": "c27f0a75"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# delay_compare = df.groupby('airport_name').agg(\n",
+        "#     Weather=('total_weather_delay', 'sum'),\n",
+        "#     Carrier=('carrier_delay', 'sum'),\n",
+        "#     Security=('security_delay', 'sum'),\n",
+        "#     Flights=('num_of_flights_total', 'sum')\n",
+        "# ).reset_index()\n",
+        "\n",
+        "# for col in ['Weather', 'Carrier', 'Security']:\n",
+        "#     delay_compare[col] = delay_compare[col] / delay_compare['Flights']\n",
+        "\n",
+        "# delay_compare\n"
+      ],
+      "id": "025b3546",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n"
+      ],
+      "id": "1c608079"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "c:\\Users\\derek\\Documents\\ds250\\.venv\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

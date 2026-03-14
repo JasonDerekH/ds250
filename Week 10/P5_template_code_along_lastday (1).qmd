@@ -1,0 +1,302 @@
+---
+title: "Client Report - The War with Star Wars"
+subtitle: "Course DS 250"
+author: "[STUDENT NAME]"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import pandas as pd 
+import numpy as np
+from lets_plot import *
+
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn import metrics
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+# add the additional libraries you need to import for ML here
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+
+
+
+## Elevator pitch
+_A SHORT (2-3 SENTENCES) PARAGRAPH THAT `DESCRIBES KEY INSIGHTS` TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS._ (Note: this is not a summary of the project, but a summary of the results.)
+
+_A Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client._
+
+## QUESTION|TASK 1
+
+__Shorten the column names and clean them up for easier use with pandas.__ Provide a table or list that exemplifies how you fixed the names. 
+
+```{python}
+# df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding = "ISO-8859-1")
+
+# df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding = "latin1")
+
+df_cols = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding_errors = "ignore", nrows = 1).melt()
+
+df_cols = (
+df_cols.replace(r"^Unnamed:.*", "", regex = True)
+       .replace(np.nan, "")
+       .replace("Response", "")
+       .replace(r"Star Wars: (Episode \w{1,3}).*", r"\1", regex = True)
+)
+
+df_cols.iloc[3:9, 0] = "seen_"
+df_cols.iloc[9:15, 0] = "rank_"
+df_cols.iloc[15:29, 0]  = "fav_"
+df_cols.iloc[30, 0] = "familiar_expanded"
+
+df_cols['new_names'] = df_cols['variable'] + df_cols['value']
+df_cols
+```
+
+How to clean-up the column names
+
+```{python}
+df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding_errors = "ignore", skiprows = 2, names = df_cols['new_names'])
+```
+
+```{python}
+
+```
+
+## QUESTION|TASK 2
+
+__Clean and format the data so that it can be used in a machine learning model.__ As you format the data, you should complete each item listed below. In your final report provide example(s) of the reformatted data with a short description of the changes made.  
+    a. Filter the dataset to respondents that have seen at least one film  
+    a. Create a new column that converts the age ranges to a single number. Drop the age range categorical column  
+    a. Create a new column that converts the education groupings to a single number. Drop the school categorical column  
+    a. Create a new column that converts the income ranges to a single number. Drop the income range categorical column  
+    a. Create your target (also known as “y” or “label”) column based on the new income range column  
+    a. One-hot encode all remaining categorical columns   
+
+
+
+Filter the dataset to respondents that have seen at least one film 
+
+```{python}
+# Include and execute your code here
+seen_columns = ['seen_Episode I', 'seen_Episode II', 'seen_Episode III', 'seen_Episode IV', 'seen_Episode V', 'seen_Episode VI']
+seen_at_least = df[seen_columns].notna().any(axis = 1)
+df_atleast1 = df.loc[seen_at_least, :].reset_index()
+
+#alternative code
+# df['num_not_seen'] = df.loc[ : , 'seen_Episode I':'seen_Episode VI'].isna().sum(axis = 1)
+# df_atleast1 = df.query('num_not_seen < 6').reset_index()
+```
+
+```{python}
+df_atleast1['age'] = (
+df_atleast1['Age'].replace(r"18-","", regex = True)
+           .replace(r"30-", "", regex = True)
+           .replace(r"45-", "", regex = True)
+           .replace(r"> ", "", regex=True).astype('Int64')) #float or 'Int64' handles missing values
+
+df_atleast1['Age'].str[:2].replace("> ", "60")
+df_atleast1 #delete this
+```
+
+Let's change education to a numeric variable
+```{python}
+# Include and execute your code here
+education = {'Bachelor degree': 4,
+             'Some college or Associate degree': 2,
+             'Graduate degree': 6,
+             'High school degree': 0,
+             'Less than high school degree': 0}
+
+df_atleast1['Education'] = df_atleast1['Education'].replace(education)
+
+# df_atleast1['education_new'] = df_atleast1['Education'].map(education).fillna(0) #alternative way
+# df_atleast1.drop('education_new', axis=1, inplace = True)
+```
+
+Let's change Household Income to a numeric variable
+```{python}
+# Include and execute your code here
+df_atleast1['income'] = df_atleast1['Household Income'].str.extract(r"\$(\d{1,3})").astype('Int64')
+df_atleast1.drop('Household Income', axis=1, inplace = True)
+```
+
+```{python}
+df_atleast1
+```
+Let's convert the "seen" columns to 0's and 1's instead of text and missing values
+```{python}
+# Include and execute your code here
+df_atleast1.loc[(df_atleast1['seen_Episode I'].notna())>0, 'seen_Episode I']=1
+df_atleast1.loc[(df_atleast1['seen_Episode II'].notna())>0, 'seen_Episode II']=1
+df_atleast1.loc[(df_atleast1['seen_Episode III'].notna())>0, 'seen_Episode III']=1
+df_atleast1.loc[(df_atleast1['seen_Episode IV'].notna())>0, 'seen_Episode IV']=1
+df_atleast1.loc[(df_atleast1['seen_Episode V'].notna())>0, 'seen_Episode V']=1
+df_atleast1.loc[(df_atleast1['seen_Episode VI'].notna())>0, 'seen_Episode VI']=1
+
+#repeat for each column seen episode
+#no to change na's to 0
+# df_atleast1.loc[ : , 'seen_Episode I':'seen_Episode VI'].replace(np.nan, 0)
+df_atleast1[['seen_Episode I', 'seen_Episode II', 'seen_Episode III', 'seen_Episode IV', 'seen_Episode V', 'seen_Episode VI']] = df_atleast1[['seen_Episode I', 'seen_Episode II', 'seen_Episode III', 'seen_Episode IV', 'seen_Episode V', 'seen_Episode VI']].replace(np.nan, 0)  
+
+# df_atleast1.loc[ : , 'seen_Episode I':'seen_Episode VI'] = df_atleast1.loc[ : , 'seen_Episode I':'seen_Episode VI'].fillna(0)
+df_atleast1
+```
+
+```{python}
+# Include and execute your code here
+# I really didn't this because of the changes I made above
+roman_numerals = ['I', 'II', 'VI']
+
+for num in roman_numerals:
+  column_name = f"seen_Episode {num}"
+  df_atleast1[column_name] = df_atleast1[column_name].apply(lambda x: 1 if pd.notna(x) else x).fillna(0)
+#put this in a for loop
+```
+
+```{python}
+df_atleast1.replace(r"Star Wars:.*", "1", regex = True, inplace=True)
+df_atleast1[df_atleast1.filter(regex = "^seen").columns] = df_atleast1.filter(regex = "^seen").fillna(0).astype('int')
+
+# not sure what this should do -->df_atleast1[df]
+```
+
+```{python}
+df_atleast1[df_atleast1.filter(regex = "^seen").columns] = df_atleast1.filter(regex = "^seen").applymap(lambda x: 0 if pd.isna(x) else 1)
+```
+
+```{python}
+df_atleast1 #I can delete this
+```
+
+Now let's recode the favorability ratings for each character
+
+```{python}
+fav_dict = {'Very favorably': 5,
+            'Somewhat favorably': 4,
+            'Neither favorably nor unfavorably (neutral)': 3,
+            'Unfamiliar (N/A)': 3,
+            'Somewhat unfavorably': 2,
+            'Very unfavorably': 1}
+
+df_fav = df_atleast1.replace(fav_dict)
+```
+
+one-hot encode the remaining feature variables
+```{python}
+df_fav2 = df_fav.drop(['Age', 'Education', 'Do you consider yourself to be a fan of the Expanded Universe?'], axis = 1)
+df_ML = pd.get_dummies(df_fav2, columns = df_fav2.select_dtypes(exclude = 'number').columns)
+
+pd.get_dummies(df_fav2, columns = df_fav2.select_dtypes(include = 'object').columns)
+```
+
+Create a "target" column of 0 and 1's for income $50k or above
+
+```{python}
+df_ML['target'] = (df_ML['income']>=50).astype(float)
+df_income_present = df_ML.dropna(subset = 'target')
+df_income_present.columns
+```
+
+## QUESTION|TASK 3
+
+__Validate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.__  
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+print(df_income_present['Which character shot first?_Greedo'].dropna().shape)
+
+shot = df_income_present['Which character shot first?_Greedo'].dropna().value_counts(normalize=True).reset_index()
+shot['percent'] = shot['Which character shot first?_Greedo']
+shot
+
+```
+
+```{python}
+# Include and execute your code here
+
+```
+
+## QUESTION|TASK 4
+
+__Build a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.__ 
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+```
+
+---
+
+## STRETCH QUESTION|TASK 1
+
+__Build a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.__
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+
+## STRETCH QUESTION|TASK 2
+
+__Validate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.__
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+
+## STRETCH QUESTION|TASK 3
+
+__Create a new column that converts the location groupings to a single number. Drop the location categorical column.__  
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+---

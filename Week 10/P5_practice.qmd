@@ -1,0 +1,49 @@
+
+```{python}
+import pandas as pd 
+import numpy as np
+import sklearn
+
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+```{python}
+df_cols = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding_errors = "ignore", nrows=1).melt()
+
+df_cols = (df_cols.replace(np.nan,"").replace("Response", "").replace("^Unnamed.*", "", regex = True).replace("Star Wars: (Episode \w{1,3}) .*", r"\1", regex = True)
+)
+
+df_cols.iloc[3:9, 0] = "seen_"
+df_cols.iloc[9:15, 0] = "rank_"
+df_cols.iloc[15:29, 0] = "fav_"
+
+
+df_cols['newnames'] = df_cols['variable'] + df_cols['value']
+df_cols
+```
+
+
+```{python}
+df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding_errors = "ignore", skiprows = 2, names=df_cols['newnames']).melt()
+```
+
+
+```{python}
+import pandas as pd
+
+url = "https://raw.githubusercontent.com/byuidatascience/data4python4ds/master/data-raw/flights/flights.csv"
+flights = pd.read_csv(url)
+```
+
+```{python}
+flights["dest"].count()
+flights
+```
+
+
+```{python}
+
+```

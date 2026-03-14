@@ -1,0 +1,149 @@
+---
+title: "Client Report - What's in a Name?"
+subtitle: "Course DS 250"
+author: "Jason Hollingsworth"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+## Project Notes
+
+__For Project 1 the answer to each question should include a chart **and** a written response. The years labels on your charts should not include a comma. At least **two** of your charts must include reference marks.__  
+
+```{python}
+# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+df = pd.read_csv("names_year.csv")
+```
+
+## QUESTION|TASK 1
+
+__How does your name at your birth year compare to its use historically?__
+
+_The name Jason took a large spike around the years 1975 - 1980. The use of the name later declined a lot. This decline was followed by a short rise around the time I was born (2003)._
+
+```{python}
+# Include and execute your code here
+myName = df.query('name == "Jason"')
+(
+  ggplot(data = myName, mapping= aes(x='year',y='Total')) +
+  geom_line()
+)
+
+```
+
+
+## QUESTION|TASK 2
+
+__If you talked to someone named Brittany on the phone, what is your guess of his or her age? What ages would you not guess?__
+
+I would guess their age to be ~35 years. I made this guess based off the data that indicates the most babies named Brittany were in 1990. That would put them at 36 years old this year.
+
+```{python}
+# Include and execute your code here
+brittany = df.query('name == "Brittany"')
+(
+  ggplot(data = brittany, mapping = aes(x='year', y='Total')) + 
+  geom_line()
+)
+
+```
+
+
+## QUESTION|TASK 3
+
+__Mary, Martha, Peter, and Paul are all Christian names. From 1920 - 2000, compare the name usage of each of the four names in a single chart. What trends do you notice?__
+
+As we can tell by the graph, each name had their respective peak in the 1950s - 1960. After these years however, the use of each name declines. This is potentially due to anti-Catholic movements and organizations that grew during this time.
+
+```{python}
+# Include and execute your code here
+
+christian_names = df.query('name == ["Mary","Martha","Peter","Paul"]')
+
+(
+  ggplot(data=christian_names,mapping = aes(x='year',y='Total',color = 'name')) +
+  geom_line()
+)
+
+
+```
+
+
+
+## QUESTION|TASK 4
+
+__Think of a unique name from a famous movie. Plot the usage of that name and see how changes line up with the movie release. Does it look like the movie had an effect on usage?__  
+
+We can see that the name Luke has taken a large increase in use since the release of Star Wars in 1977. It's gone up from just 1000 named Luke to more than 10,000 in the late 2010s
+
+```{python}
+# Include and execute your code here
+starWars = df.query('name == "Luke"')
+(
+  ggplot(data = starWars,mapping=aes(x='year',y='Total')) + 
+  geom_vline(xintercept = 1977, color = "red", linetype = 2) +
+  geom_text(label = "Release of First StarWars",x = 1975, y=6000, angle = 90) +
+  geom_line()
+)
+
+```
+
+---
+
+## STRETCH QUESTION|TASK 1
+
+__Reproduce the chart Elliot using the data from the `names_year.csv` file.__ 
+
+```{python}
+# Include and execute your code here
+elliot_name = df.query('name == "Elliot"')
+(
+  # Elliot_df?
+  ggplot(data=elliot_name, mapping=aes(x="year", y="Total", color="name"))
+  + geom_vline(xintercept = [1982,1985,2002], linetype="dashed", color="red")
+  
+  
+  # labs(title="Elliott... What?", x="Year", y="Total")
+
+  # layer_labels("text",x=1982, y=elliot_name["total"].max(), label="E.T Released", angle=90, vjust=0)
+  # scale_x_continuous(breaks="breaks_range", format = '{}', limits=[1950, 2025])
+  # + scale_color_manual(values=["#6e78fa"],name="name") 
+)
+
+
+
+
+```
+
+
+---

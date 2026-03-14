@@ -1,0 +1,286 @@
+---
+title: "Client Report - The War with Star Wars"
+subtitle: "Course DS 250"
+author: "[STUDENT NAME]"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import pandas as pd 
+import numpy as np
+from lets_plot import *
+import re
+# add the additional libraries you need to import for ML here
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+
+
+
+## Elevator pitch
+_A SHORT (2-3 SENTENCES) PARAGRAPH THAT `DESCRIBES KEY INSIGHTS` TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS._ (Note: this is not a summary of the project, but a summary of the results.)
+
+_A Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client._
+
+## QUESTION|TASK 1
+
+__Shorten the column names and clean them up for easier use with pandas.__ Provide a table or list that exemplifies how you fixed the names. 
+
+```{python}
+df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding = "ISO-8859-1")
+
+# df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding = "latin1")
+
+df_cols = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding_errors = "ignore", nrows = 1).melt()
+
+df_cols = (
+df_cols.replace(r"^Unnamed:.*", "", regex = True)
+       .replace(np.nan, "")
+       .replace("Response", "")
+       .replace(r"Star Wars: (Episode \w{1,3}).*", r"\1", regex = True)
+)
+
+df_cols.iloc[3:9, 0] = "seen_"
+df_cols.iloc[9:15, 0] = "rank_"
+df_cols.iloc[15:29, 0]  = "fav_"
+df_cols.iloc[30, 0] = "familiar_expanded"
+
+df_cols['new_names'] = df_cols['variable'] + df_cols['value']
+```
+
+How to clean-up the column names
+
+```{python}
+df = pd.read_csv("https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv", encoding_errors = "ignore", skiprows = 2, names = df_cols['new_names'])
+```
+
+```{python}
+df
+```
+
+## QUESTION|TASK 2
+
+__Clean and format the data so that it can be used in a machine learning model.__ As you format the data, you should complete each item listed below. In your final report provide example(s) of the reformatted data with a short description of the changes made.  
+    a. Filter the dataset to respondents that have seen at least one film  
+    a. Create a new column that converts the age ranges to a single number. Drop the age range categorical column  
+    a. Create a new column that converts the education groupings to a single number. Drop the school categorical column  
+    a. Create a new column that converts the income ranges to a single number. Drop the income range categorical column  
+    a. Create your target (also known as “y” or “label”) column based on the new income range column  
+    a. One-hot encode all remaining categorical columns   
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+df['num_seen'] = df.loc[ : , 'seen_Episode I':'seen_Episode VI'].notna().sum(axis = 1)
+df_atleast1 = df.query('num_seen > 0')
+
+```
+
+```{python}
+# Include and execute your code here
+age_replace = {'45-60': 52, '> 60': 65, '30-44': 37, '18-29': 23.5}
+
+df.replace(age_replace)
+
+
+
+```
+
+```{python}
+# Include and execute your code here
+# df['income'] = df['Household Income'].str.extract(r"\$(\d*)").astype(float)
+
+# df['income'] = df['Household Income'].str.extract(r"\$(\d*),\d* - \$(\d*)", r\1\2, regex = True).astype(float)
+df
+
+income_brackets = {'$0 - $24,999' : 1,
+'$50,000 - $99,999' : 2,
+'$100,000 - $149,999' : 3,
+'$150,000+' : 4}
+
+household_incomes = df['Household Income']
+df['income'] = df['Household Income'].replace(income_brackets)
+df['Household Income'] = household_incomes
+
+df = df['income'].replace(np.nan,0)
+
+
+df
+
+```
+
+Convert Education to numeric variable
+```{python}
+# Include and execute your code here
+education_replace = {'Less than high school degree' : 0, 'High school degree' : 1, 'Some college or Associate degree' : 2, 'Bachelor degree' : 3, 'Graduate degree' : 4}
+
+# df['education_numeric'] = df['Education'].map(education)
+# df.drop(columns.....)
+
+
+df_numeric_ed = df.replace(education_replace)
+
+df_numeric_ed
+
+```
+
+Replace seen_Episodes
+```{python}
+# Include and execute your code here
+
+#Left this below in case I want to practice taking the regex approach
+#df['i'] = df['Household Income'].str.extract(r"\$(\d*)").astype(float)
+
+# seen_Eps = {
+#   'Star Wars Episode I The Phantom Menace' : 1,
+#   'Star Wars Episode II Attack of the Clones' : 1,
+#   'Star Wars Episode III Revenge of the Sith' : 1,
+#   'Star Wars Episode IV A New Hope' : 1,
+#   'Star Wars Episode V The Empire Strikes Back' : 1,
+#   'Star Wars Episode VI Return of the Jedi' : 1 
+# }
+
+# df = df.fillna(0)
+
+# df['Star Wars Episode I The Phantom Menace'] = df.replace(seen_Eps)
+# df['Star Wars Episode II Attack of the Clones'] = df.replace(seen_Eps)
+# df['Star Wars Episode III Revenge of the Sith'] = df.replace(seen_Eps)
+# df['Star Wars Episode IV A New Hope'] = df.replace(seen_Eps)
+# df['Star Wars Episode V The Empire Strikes Back'] = df.replace(seen_Eps)
+# df['Star Wars Episode VI Return of the Jedi'] = df.replace(seen_Eps)
+
+df.loc[:, 'seen_Episode I':'seen_Episode VI'] = df.loc[:,'seen_Episode I':'seen_Episode VI'].notna().astype(float)
+
+df.loc[: 'seen_Episode I':'seen_Episode VI'].astype(float)
+
+```
+
+```{python}
+# This doesn't work rn
+# df_new = df.replace({r"Episode I":1, r"Episode V":1}, regex= True)
+
+# df[df.filter{regex = "seen_"}.columns] = df.filter(regex = "^seen").fillna(0).astype(int)
+
+```
+
+Change fav_ data to numeric
+
+```{python}
+favorites = {'Very unfavorably' : 1,
+             'Somewhat unfavorably' : 2,
+             'Neutral' : 3,
+             'Somewhat favorably' : 4,
+             'Very favorably' : 5
+}
+df = df.replace(favorites)
+df = df.replace('Unfamiliar (N/A)',3)
+df.fillna(3)
+df
+```
+
+```{python}
+df_fav = df.drop(['Education', 'Household Income', 'Age', 'Do you consider yourself to be a fan of the Expanded Universe?'], axis=1)
+df_fav
+df_dummies = pd.get_dummies(df_fav, columns=df_fav.select_dtypes(include = "object").columns).astype(float)
+df_dummies
+```
+
+Create target variable
+```{python}
+df_income_present = df_dummies.dropna(subset = 'income')
+
+df_income_present['income'] >=50).astype(float)
+```
+
+## QUESTION|TASK 3
+
+__Validate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.__  
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+```{python}
+# Include and execute your code here
+
+```
+
+## QUESTION|TASK 4
+
+__Build a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.__ 
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+```
+
+---
+
+## STRETCH QUESTION|TASK 1
+
+__Build a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.__
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+
+## STRETCH QUESTION|TASK 2
+
+__Validate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.__
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+
+## STRETCH QUESTION|TASK 3
+
+__Create a new column that converts the location groupings to a single number. Drop the location categorical column.__  
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+
+
+```
+
+---

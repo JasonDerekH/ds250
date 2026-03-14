@@ -1,0 +1,235 @@
+---
+title: "Client Report - Can You Predict That?"
+subtitle: "Course DS 250"
+author: "Jason Hollingsworth"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import pandas as pd 
+import numpy as np
+import sklearn
+from sklearn.model_selection import train_test_split
+from sklearn import linear_model
+from sklearn.metrics import classification_report
+from lets_plot import *
+from sklearn.ensemble import RandomForestClassifier
+
+#Experimenting with this
+# import matplotlib.pyplot as plt
+
+
+# add the additional libraries you need to import for ML here
+
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+```{python}
+# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+
+# import your data here using pandas and the URL
+df = pd.read_csv("https://raw.githubusercontent.com/byuidatascience/data4dwellings/master/data-raw/dwellings_ml/dwellings_ml.csv")
+df.head()
+
+```
+
+## Elevator pitch
+_A SHORT (2-3 SENTENCES) PARAGRAPH THAT `DESCRIBES KEY INSIGHTS` TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS._ (Note: this is not a summary of the project, but a summary of the results.)
+
+I've organized the data in different test-train models. I've found that living area, stories, and baths are among the most important predictors in determining if a house was built before or after 1980
+
+## QUESTION|TASK 1
+
+__Create 2-3 charts that evaluate potential relationships between the home variables and `before1980`.__ Explain what you learn from the charts that could help a machine learning algorithm. 
+
+using scatterplots with different 'x' values, we can see the varying effects of each independent variable. Understanding the different correlations gives us good info on what to use as predictors
+
+```{python}
+# Frankly I rushed these and didn't go back to organize the charts
+
+ggplot(df, aes(x='livearea', y='before1980')) + geom_point()
+
+ggplot(df, aes(x='sprice', y='before1980')) + geom_point()
+
+ggplot(df, aes(x='stories', y='before1980')) + geom_point()
+
+
+
+
+```
+
+
+## QUESTION|TASK 2
+
+__Build a classification model labeling houses as being built “before 1980” or “during or after 1980”.__ Your goal is to reach or exceed 90% accuracy. Explain your final model choice (algorithm, tuning parameters, etc) and describe what other models you tried.
+
+I ended with a 93% accuracy for my model. I changed two parameters to make the prediction more accurate. I made the test_size .2 so that there was a good training data size. I also gave the prediction 300 n_estimators
+
+```{python}
+df = df.replace({"n/a": np.nan,
+                 "1500+": 1500,
+                 -999: np.nan,
+                 "unknown": np.nan})
+
+df = df.dropna()
+
+# Features and target
+x = df.drop(columns=['before1980','yrbuilt','parcel'])
+y = df['before1980']
+
+# Train test split
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=.2, random_state=7
+)
+
+# Random Forest model
+clf = RandomForestClassifier(n_estimators=300, random_state=7)
+
+clf.fit(x_train, y_train)
+
+pred = clf.predict(x_test)
+
+print(classification_report(y_test, pred))
+```
+
+
+## QUESTION|TASK 3
+
+__Justify your classification model by discussing the most important features selected by your model.__ This discussion should include a feature importance chart and a description of the features. 
+
+Based on where these points are plotted in our diagram, we can safely conclude the biggest indicators of a house being built before or after 1980 is the living area, the arcstyle_ONE-STORY, and total stories.
+
+```{python}
+
+feature_df = (pd.DataFrame({'features': x.columns,'importance': clf.feature_importances_
+    }).sort_values('importance', ascending=True).query('importance > .04')
+)
+
+(
+    ggplot(feature_df, aes(x='features', y='importance'))
+    + geom_point()
+)
+
+
+```
+
+
+## QUESTION|TASK 4
+
+__Describe the quality of your classification model using 2-3 different evaluation metrics.__ You also need to explain how to interpret each of the evaluation metrics you use.  
+
+Precision: We had a fairly good precision with 92% of our 'after1980' houses being predicted corretly and 94% of the houses before1980 being predicted correctly. I found these values under the precision column in the classification_report
+
+Recall: This refers to how many of the positive instances were predicted correctly. In this case we had a positive rate of .95 for before 1980 and a rate of .89 for after 1980. 
+
+F1-Score: The F1-Score is the average of the previous two metrics. We can get this by averaging the two, previous and recall for each result. For 0, the results averaged .9. For 1, the results average .95
+
+```{python}
+
+x = df.drop(columns = ['before1980', 'yrbuilt', 'parcel'])
+y = df.before1980
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = .2, random_state = 7)
+
+clf = RandomForestClassifier(n_estimators = 400)
+
+clf.fit(x_train, y_train)
+
+#I learned online this was a good model to prevent 'overfitting' or skewed data from too many predictors
+model = linear_model.Ridge()
+model.fit(x_train, y_train)
+
+
+#Reuse trained model
+pred = clf.predict(x_test)
+
+
+
+print(classification_report(y_test, pred))
+```
+
+---
+
+## STRETCH QUESTION|TASK 1
+
+__Repeat the classification model using 3 different algorithms.__ Display their Feature Importance, and Decision Matrix. Explain the differences between the models and which one you would recommend to the Client.   
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+# Frankly, this seemed like a lot of copying and pasting that I figure I'll get to later
+
+```
+
+
+## STRETCH QUESTION|TASK 2
+
+__Join the `dwellings_neighborhoods_ml.csv` data to the `dwelling_ml.csv` on the `parcel` column to create a new dataset. Duplicate the code for the stretch question above and update it to use this data.__ Explain the differences and if this changes the model you recomend to the Client.   
+
+_type your results and analysis here_
+
+```{python}
+# Include and execute your code here
+# wasn't totally sure how to set up the data for this one. 
+# I understand the concept of joins for tables--just wasn't sure which tables to use.
+
+```
+
+
+## STRETCH QUESTION|TASK 3
+
+__Can you build a model that predicts the year a house was built?__ Explain the model and the evaluation metrics you would use to determine if the model is good.  
+
+I've listed three evaluation metrics at the bottom that determine if a good model exists. When MSE is lower, it indicates a better prediction, similar to R^2 that indicates a better model when closer to 1.
+
+```{python}
+x = df.drop(columns=['before1980','yrbuilt','parcel'])
+y = df['yrbuilt']
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=.2)
+
+model = linear_model.Ridge()
+model.fit(x_train, y_train)
+
+# ChatGPT recommended these modules for this project when I asked for ideas
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+preds = model.predict(x_test)
+
+mse = mean_squared_error(y_test, preds)
+mae = mean_absolute_error(y_test, preds)
+rsquared = r2_score(y_test, preds)
+
+print(f"MSE: {mse}")
+print(f"MAE: {mae}")
+print(f"R²: {rsquared}")
+
+
+```
+
+---
