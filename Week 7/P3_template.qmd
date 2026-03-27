@@ -117,9 +117,17 @@ __What is the best month to fly if you want to avoid delays of any length?__ Des
 _type your results and analysis here_
 
 ```{python}
-# Include and execute your code here
-df_filtered = df[df["month"].notna() & (df["month"].notna() & df["month"] != "NaN")]
-df_filtered
+# mapping json for the map() function
+month_map = {
+    "January": 1, "February": 2, "March": 3, "April": 4,
+    "May": 5, "June": 6, "July": 7, "August": 8,
+    "September": 9, "October": 10, "November": 11, "December": 12
+}
+
+df_filtered = df
+
+#Insert df_filtered code here
+
 summary = df_filtered.groupby("month").agg(
   Total_Flights=("num_of_flights_total", "sum"),
   Total_Delayed_Flights=("num_of_delays_total","sum")
@@ -129,10 +137,11 @@ summary["Proportion_Delayed_Flights"] = (
   summary["Total_Delayed_Flights"] / summary["Total_Flights"]
 )
 
-summary = summary.round(2)
+# summary = summary.round(2)
 
+summary["month"] = summary["month"].map(month_map)
 summary["month"] = pd.Categorical(summary["month"], categories=range(1,13), ordered=True)
-
+summary = summary.sort_values("month")
 
 (
   ggplot(data=summary, mapping= aes(x='month', y='Proportion_Delayed_Flights')) + geom_bar(stat='identity')
@@ -153,24 +162,38 @@ According to the BTS website, the “Weather” category only accounts for sever
 _type your results and analysis here_
 Don't bother checking the below cell. It doesn't work:)
 ```{python}
-# Include and execute your code here
+#Array for weather delay calculation later
+summer_months = ["April, May, June, July, August"]
 
+#Convert empty values to overall mean  
+df["num_of_delays_late_aircraft"] = 
+df["num_of_delays_late_aircraft"].replace("Nan", np.nan)
+
+df["num_of_delays_late_aircraft"] = 
+df["num_of_delays_late_aircraft"].fillna(df["num_of_delays_late_aircraft"].mean())
+
+#Conditional to account for weather delays
+df["nas_weather"] = np.where(
+    df["month"].isin(summer_months),    #condition
+    df["num_of_delays_nas"] * 0.40,     #if true
+    df["num_of_delays_nas"] * 0.65      #otherwise
+)
 
 # Remove rows where 'Month' is missing
-# df.info()
-# df = df.dropna(subset=['Month'])
-# df.info()
+df.info()
+df = df.dropna(subset=['Month'])
+df.info()
 
 # df['Month'] = pd.to_numeric(df['Month'], errors='coerce')
 
 # # Group by 'Month' and sum 'num_of_delays_total'
-# monthly_delays = df.groupby('Month')['num_of_delays_total'].sum().reset_index()
+monthly_delays = df.groupby('Month')['num_of_delays_total'].sum().reset_index()
 
 # # Sort by Month (ensuring correct order for visualization)
-# monthly_delays = monthly_delays.sort_values('Month')
+monthly_delays = monthly_delays.sort_values('Month')
 
 # # Find the best month with the **lowest** number of delays
-# best_month = monthly_delays.loc[monthly_delays['num_of_delays_total'].idxmin(), 'Month']
+best_month = monthly_delays.loc[monthly_delays['num_of_delays_total'].idxmin(), 'Month']
 ```
 
 
