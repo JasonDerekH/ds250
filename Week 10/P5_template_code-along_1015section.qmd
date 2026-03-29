@@ -70,11 +70,15 @@ _A Client has requested this analysis and this is your one shot of what you woul
 
 __Shorten the column names and clean them up for easier use with pandas.__ Provide a table or list that exemplifies how you fixed the names. 
 
-_type your results and analysis here_
+I hard coded some shorter titles using iloc[] and used regex to work with the movie title
 
 ```{python}
-# Include and execute your code here
 
+# Show cleaned names
+cleaned = df.columns
+
+
+print(cleaned)
 
 ```
 
@@ -115,7 +119,8 @@ Convert age to a numeric variable
 ```{python}
 age_replace = {'45-60': 52, '> 60': 65, '30-44': 37, '18-29': 23.5}
 
-df_atleast1.replace(age_replace)
+# shouldn't have to drop 'Age' here right?
+df_atleast1 = df_atleast1.replace(age_replace)
 ```
 
 Convert income to a numeric variable
@@ -126,6 +131,8 @@ df_atleast1['income'] = df_atleast1['Household Income'].str.extract(r"\$(\d*)").
 
 
 df_atleast1['income2'] = df_atleast1['Household Income'].str.replace(r"\$(\d*),*\d* - \$(\d*).*", r'\1\2', regex = True)
+
+# I drop "Household Income" later
 
 ```
 
@@ -140,7 +147,8 @@ education = {'Bachelor degree': 16,
              'Less than high school degree': 10}
 
 df_atleast1['education_numeric'] = df_atleast1['Education'].map(education)
-df_atleast1.drop(columns = ['Education'])
+
+#I drop "Education" later
 ```
 
 Trying to convert the "seen" columns to 0's and 1's
@@ -148,7 +156,7 @@ Trying to convert the "seen" columns to 0's and 1's
 # Include and execute your code here
 df_atleast1.loc[:, 'seen_Episode I':'seen_Episode VI'] = df_atleast1.loc[:, 'seen_Episode I':'seen_Episode VI'].notna()
 
-df_atleast1.loc[:, 'seen_Episode I':'seen_Episode VI'].astype('float')
+df_atleast1.loc[:, 'seen_Episode I':'seen_Episode VI'] = df_atleast1.loc[:, 'seen_Episode I':'seen_Episode VI'].astype('float')
 ```
 
 ```{python}

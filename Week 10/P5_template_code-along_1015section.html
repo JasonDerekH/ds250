@@ -3132,7 +3132,7 @@ vertical-align: -.125em;
   <li><a href="#stretch-questiontask-3" id="toc-stretch-questiontask-3">STRETCH QUESTION|TASK 3</a></li>
   </ul>
 </nav>
-<div id="7fb41e6d" class="cell" data-execution_count="1">
+<div id="9dde7bae" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
@@ -3143,7 +3143,7 @@ vertical-align: -.125em;
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="072559e4" class="cell" data-execution_count="2">
+<div id="e7e68db2" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df = pd.read_csv(&quot;https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv&quot;, encoding = &quot;ISO-8859-1&quot;)</span></span>
@@ -3412,7 +3412,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="cea817ee" class="cell" data-execution_count="3">
+<div id="e89dd19a" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv&quot;</span>, encoding_errors <span class="op">=</span> <span class="st">&quot;ignore&quot;</span>, skiprows <span class="op">=</span> <span class="dv">2</span>, names <span class="op">=</span> df_cols[<span class="st">&#39;newnames&#39;</span>])</span>
@@ -3730,12 +3730,19 @@ vertical-align: -.125em;
 <section id="questiontask-1" class="level2">
 <h2 class="anchored" data-anchor-id="questiontask-1">QUESTION|TASK 1</h2>
 <p><strong>Shorten the column names and clean them up for easier use with pandas.</strong> Provide a table or list that exemplifies how you fixed the names.</p>
-<p><em>type your results and analysis here</em></p>
-<div id="8d0eb7da" class="cell" data-execution_count="4">
+<p>I hard coded some shorter titles using iloc[] and used regex to work with the movie title</p>
+<div id="d89058d1" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cleaned names</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cleaned <span class="op">=</span> df.columns.tolist()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[&#39;RespondentID&#39;, &#39;Have you seen any of the 6 films in the Star Wars franchise?&#39;, &#39;Do you consider yourself to be a fan of the Star Wars film franchise?&#39;, &#39;seen_Episode I&#39;, &#39;seen_Episode II&#39;, &#39;seen_Episode III&#39;, &#39;seen_Episode IV&#39;, &#39;seen_Episode V&#39;, &#39;seen_Episode VI&#39;, &#39;rank_Episode I&#39;, &#39;rank_Episode II&#39;, &#39;rank_Episode III&#39;, &#39;rank_Episode IV&#39;, &#39;rank_Episode V&#39;, &#39;rank_Episode VI&#39;, &#39;fav_Han Solo&#39;, &#39;fav_Luke Skywalker&#39;, &#39;fav_Princess Leia Organa&#39;, &#39;fav_Anakin Skywalker&#39;, &#39;fav_Obi Wan Kenobi&#39;, &#39;fav_Emperor Palpatine&#39;, &#39;fav_Darth Vader&#39;, &#39;fav_Lando Calrissian&#39;, &#39;fav_Boba Fett&#39;, &#39;fav_C-3P0&#39;, &#39;fav_R2 D2&#39;, &#39;fav_Jar Jar Binks&#39;, &#39;fav_Padme Amidala&#39;, &#39;fav_Yoda&#39;, &#39;Which character shot first?&#39;, &#39;Are you familiar with the Expanded Universe?&#39;, &#39;Do you consider yourself to be a fan of the Expanded Universe?&#39;, &#39;Do you consider yourself to be a fan of the Star Trek franchise?&#39;, &#39;Gender&#39;, &#39;Age&#39;, &#39;Household Income&#39;, &#39;Education&#39;, &#39;Location (Census Region)&#39;]</code></pre>
+</div>
 </div>
 </section>
 <section id="questiontask-2" class="level2">
@@ -3748,835 +3755,113 @@ a. Create a new column that converts the income ranges to a single number. Drop 
 a. Create your target (also known as “y” or “label”) column based on the new income range column<br>
 a. One-hot encode all remaining categorical columns</p>
 <p>Filter the dataset to respondents that have seen at least one film</p>
-<div id="48850536" class="cell" data-execution_count="5">
+<div id="81744b9b" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_atleast1 <span class="op">=</span> df.dropna(subset <span class="op">=</span> [<span class="st">&#39;seen_Episode I&#39;</span>, <span class="st">&#39;seen_Episode II&#39;</span>, <span class="st">&#39;seen_Episode III&#39;</span>, <span class="st">&#39;seen_Episode IV&#39;</span>, <span class="st">&#39;seen_Episode V&#39;</span>, <span class="st">&#39;seen_Episode VI&#39;</span>], how <span class="op">=</span> <span class="st">&#39;all&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_atleast1 <span class="op">=</span> df.dropna(subset <span class="op">=</span> [<span class="st">&#39;seen_Episode I&#39;</span>, <span class="st">&#39;seen_Episode II&#39;</span>, <span class="st">&#39;seen_Episode III&#39;</span>, <span class="st">&#39;seen_Episode IV&#39;</span>, <span class="st">&#39;seen_Episode V&#39;</span>, <span class="st">&#39;seen_Episode VI&#39;</span>], how <span class="op">=</span> <span class="st">&#39;all&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Convert age to a numeric variable</p>
-<div id="507b3460" class="cell" data-execution_count="7">
+<div id="b303d506" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>age_replace <span class="op">=</span> {<span class="st">&#39;45-60&#39;</span>: <span class="dv">52</span>, <span class="st">&#39;&gt; 60&#39;</span>: <span class="dv">65</span>, <span class="st">&#39;30-44&#39;</span>: <span class="dv">37</span>, <span class="st">&#39;18-29&#39;</span>: <span class="fl">23.5</span>}</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_atleast1.replace(age_replace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>age_replace <span class="op">=</span> {<span class="st">&#39;45-60&#39;</span>: <span class="dv">52</span>, <span class="st">&#39;&gt; 60&#39;</span>: <span class="dv">65</span>, <span class="st">&#39;30-44&#39;</span>: <span class="dv">37</span>, <span class="st">&#39;18-29&#39;</span>: <span class="fl">23.5</span>}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># shouldn&#39;t have to drop &#39;Age&#39; here right?</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df_atleast1 <span class="op">=</span> df_atleast1.replace(age_replace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">RespondentID</th>
-<th data-quarto-table-cell-role="th">Have you seen any of the 6 films in the Star Wars franchise?</th>
-<th data-quarto-table-cell-role="th">Do you consider yourself to be a fan of the Star Wars film franchise?</th>
-<th data-quarto-table-cell-role="th">seen_Episode I</th>
-<th data-quarto-table-cell-role="th">seen_Episode II</th>
-<th data-quarto-table-cell-role="th">seen_Episode III</th>
-<th data-quarto-table-cell-role="th">seen_Episode IV</th>
-<th data-quarto-table-cell-role="th">seen_Episode V</th>
-<th data-quarto-table-cell-role="th">seen_Episode VI</th>
-<th data-quarto-table-cell-role="th">rank_Episode I</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">fav_Yoda</th>
-<th data-quarto-table-cell-role="th">Which character shot first?</th>
-<th data-quarto-table-cell-role="th">Are you familiar with the Expanded Universe?</th>
-<th data-quarto-table-cell-role="th">Do you consider yourself to be a fan of the Expanded Universe?</th>
-<th data-quarto-table-cell-role="th">Do you consider yourself to be a fan of the Star Trek franchise?</th>
-<th data-quarto-table-cell-role="th">Gender</th>
-<th data-quarto-table-cell-role="th">Age</th>
-<th data-quarto-table-cell-role="th">Household Income</th>
-<th data-quarto-table-cell-role="th">Education</th>
-<th data-quarto-table-cell-role="th">Location (Census Region)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>3292879998</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>3.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>I don&#39;t understand this question</td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Male</td>
-<td>23.5</td>
-<td>NaN</td>
-<td>High school degree</td>
-<td>South Atlantic</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>3292765271</td>
-<td>Yes</td>
-<td>No</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>...</td>
-<td>Unfamiliar (N/A)</td>
-<td>I don&#39;t understand this question</td>
-<td>No</td>
-<td>NaN</td>
-<td>No</td>
-<td>Male</td>
-<td>23.5</td>
-<td>$0 - $24,999</td>
-<td>High school degree</td>
-<td>West North Central</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3</td>
-<td>3292763116</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>5.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>I don&#39;t understand this question</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Male</td>
-<td>23.5</td>
-<td>$100,000 - $149,999</td>
-<td>Some college or Associate degree</td>
-<td>West North Central</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>3292731220</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>5.0</td>
-<td>...</td>
-<td>Somewhat favorably</td>
-<td>Greedo</td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Male</td>
-<td>23.5</td>
-<td>$100,000 - $149,999</td>
-<td>Some college or Associate degree</td>
-<td>West North Central</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>3292719380</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>1.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>Han</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Male</td>
-<td>23.5</td>
-<td>$25,000 - $49,999</td>
-<td>Bachelor degree</td>
-<td>Middle Atlantic</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1180</td>
-<td>3288389603</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>3.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>Han</td>
-<td>No</td>
-<td>NaN</td>
-<td>No</td>
-<td>Female</td>
-<td>52.0</td>
-<td>$0 - $24,999</td>
-<td>Some college or Associate degree</td>
-<td>Pacific</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1181</td>
-<td>3288388730</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>5.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>Han</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Female</td>
-<td>23.5</td>
-<td>$0 - $24,999</td>
-<td>Some college or Associate degree</td>
-<td>East North Central</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1182</td>
-<td>3288378779</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>4.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>I don&#39;t understand this question</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Female</td>
-<td>37.0</td>
-<td>$50,000 - $99,999</td>
-<td>Bachelor degree</td>
-<td>Mountain</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1184</td>
-<td>3288373068</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>4.0</td>
-<td>...</td>
-<td>Very favorably</td>
-<td>Han</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Female</td>
-<td>52.0</td>
-<td>$100,000 - $149,999</td>
-<td>Some college or Associate degree</td>
-<td>East North Central</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1185</td>
-<td>3288372923</td>
-<td>Yes</td>
-<td>No</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>6.0</td>
-<td>...</td>
-<td>Very unfavorably</td>
-<td>I don&#39;t understand this question</td>
-<td>No</td>
-<td>NaN</td>
-<td>No</td>
-<td>Female</td>
-<td>65.0</td>
-<td>$50,000 - $99,999</td>
-<td>Graduate degree</td>
-<td>Pacific</td>
-</tr>
-</tbody>
-</table>
-
-<p>835 rows × 38 columns</p>
-</div>
-</div>
 </div>
 <p>Convert income to a numeric variable</p>
-<div id="8d2d9d64" class="cell" data-execution_count="8">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_atleast1[<span class="st">&#39;income&#39;</span>] <span class="op">=</span> df_atleast1[<span class="st">&#39;Household Income&#39;</span>].<span class="bu">str</span>.extract(<span class="vs">r&quot;\$(\d*)&quot;</span>).astype(<span class="bu">float</span>) <span class="co">#or you can use &quot;Int64&quot;, but int gives an error</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df_atleast1[<span class="st">&#39;income2&#39;</span>] <span class="op">=</span> df_atleast1[<span class="st">&#39;Household Income&#39;</span>].<span class="bu">str</span>.replace(<span class="vs">r&quot;\$(\d*),*\d* - \$(\d*).*&quot;</span>, <span class="vs">r&#39;\1\2&#39;</span>, regex <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Convert Education to numeric variable</p>
-<div id="418f42df" class="cell" data-execution_count="9">
+<div id="f8ae3467" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>education <span class="op">=</span> {<span class="st">&#39;Bachelor degree&#39;</span>: <span class="dv">16</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Some college or Associate degree&#39;</span>: <span class="dv">14</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Graduate degree&#39;</span>: <span class="dv">18</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;High school degree&#39;</span>: <span class="dv">12</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Less than high school degree&#39;</span>: <span class="dv">10</span>}</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df_atleast1[<span class="st">&#39;education_numeric&#39;</span>] <span class="op">=</span> df_atleast1[<span class="st">&#39;Education&#39;</span>].<span class="bu">map</span>(education)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>df_atleast1.drop(columns <span class="op">=</span> [<span class="st">&#39;Education&#39;</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_atleast1[<span class="st">&#39;income&#39;</span>] <span class="op">=</span> df_atleast1[<span class="st">&#39;Household Income&#39;</span>].<span class="bu">str</span>.extract(<span class="vs">r&quot;\$(\d*)&quot;</span>).astype(<span class="bu">float</span>) <span class="co">#or you can use &quot;Int64&quot;, but int gives an error</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df_atleast1[<span class="st">&#39;income2&#39;</span>] <span class="op">=</span> df_atleast1[<span class="st">&#39;Household Income&#39;</span>].<span class="bu">str</span>.replace(<span class="vs">r&quot;\$(\d*),*\d* - \$(\d*).*&quot;</span>, <span class="vs">r&#39;\1\2&#39;</span>, regex <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># I drop &quot;Household Income&quot; later</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">RespondentID</th>
-<th data-quarto-table-cell-role="th">Have you seen any of the 6 films in the Star Wars franchise?</th>
-<th data-quarto-table-cell-role="th">Do you consider yourself to be a fan of the Star Wars film franchise?</th>
-<th data-quarto-table-cell-role="th">seen_Episode I</th>
-<th data-quarto-table-cell-role="th">seen_Episode II</th>
-<th data-quarto-table-cell-role="th">seen_Episode III</th>
-<th data-quarto-table-cell-role="th">seen_Episode IV</th>
-<th data-quarto-table-cell-role="th">seen_Episode V</th>
-<th data-quarto-table-cell-role="th">seen_Episode VI</th>
-<th data-quarto-table-cell-role="th">rank_Episode I</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">Are you familiar with the Expanded Universe?</th>
-<th data-quarto-table-cell-role="th">Do you consider yourself to be a fan of the Expanded Universe?</th>
-<th data-quarto-table-cell-role="th">Do you consider yourself to be a fan of the Star Trek franchise?</th>
-<th data-quarto-table-cell-role="th">Gender</th>
-<th data-quarto-table-cell-role="th">Age</th>
-<th data-quarto-table-cell-role="th">Household Income</th>
-<th data-quarto-table-cell-role="th">Location (Census Region)</th>
-<th data-quarto-table-cell-role="th">income</th>
-<th data-quarto-table-cell-role="th">income2</th>
-<th data-quarto-table-cell-role="th">education_numeric</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>3292879998</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>3.0</td>
-<td>...</td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Male</td>
-<td>18-29</td>
-<td>NaN</td>
-<td>South Atlantic</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>12.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>3292765271</td>
-<td>Yes</td>
-<td>No</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>No</td>
-<td>Male</td>
-<td>18-29</td>
-<td>$0 - $24,999</td>
-<td>West North Central</td>
-<td>0.0</td>
-<td>024</td>
-<td>12.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3</td>
-<td>3292763116</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>5.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Male</td>
-<td>18-29</td>
-<td>$100,000 - $149,999</td>
-<td>West North Central</td>
-<td>100.0</td>
-<td>100149</td>
-<td>14.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>3292731220</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>5.0</td>
-<td>...</td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Male</td>
-<td>18-29</td>
-<td>$100,000 - $149,999</td>
-<td>West North Central</td>
-<td>100.0</td>
-<td>100149</td>
-<td>14.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>3292719380</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>1.0</td>
-<td>...</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Male</td>
-<td>18-29</td>
-<td>$25,000 - $49,999</td>
-<td>Middle Atlantic</td>
-<td>25.0</td>
-<td>2549</td>
-<td>16.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1180</td>
-<td>3288389603</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>3.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>No</td>
-<td>Female</td>
-<td>45-60</td>
-<td>$0 - $24,999</td>
-<td>Pacific</td>
-<td>0.0</td>
-<td>024</td>
-<td>14.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1181</td>
-<td>3288388730</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>5.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Female</td>
-<td>18-29</td>
-<td>$0 - $24,999</td>
-<td>East North Central</td>
-<td>0.0</td>
-<td>024</td>
-<td>14.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1182</td>
-<td>3288378779</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>4.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Female</td>
-<td>30-44</td>
-<td>$50,000 - $99,999</td>
-<td>Mountain</td>
-<td>50.0</td>
-<td>5099</td>
-<td>16.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1184</td>
-<td>3288373068</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>Star Wars: Episode III Revenge of the Sith</td>
-<td>Star Wars: Episode IV A New Hope</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>4.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>Yes</td>
-<td>Female</td>
-<td>45-60</td>
-<td>$100,000 - $149,999</td>
-<td>East North Central</td>
-<td>100.0</td>
-<td>100149</td>
-<td>14.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1185</td>
-<td>3288372923</td>
-<td>Yes</td>
-<td>No</td>
-<td>Star Wars: Episode I The Phantom Menace</td>
-<td>Star Wars: Episode II Attack of the Clones</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Star Wars: Episode V The Empire Strikes Back</td>
-<td>Star Wars: Episode VI Return of the Jedi</td>
-<td>6.0</td>
-<td>...</td>
-<td>No</td>
-<td>NaN</td>
-<td>No</td>
-<td>Female</td>
-<td>&gt; 60</td>
-<td>$50,000 - $99,999</td>
-<td>Pacific</td>
-<td>50.0</td>
-<td>5099</td>
-<td>18.0</td>
-</tr>
-</tbody>
-</table>
-
-<p>835 rows × 40 columns</p>
 </div>
-</div>
-</div>
-<p>Trying to convert the “seen” columns to 0’s and 1’s</p>
-<div id="1fa469fd" class="cell" data-execution_count="10">
+<p>Convert Education to numeric variable</p>
+<div id="d7a68956" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].notna()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].astype(<span class="st">&#39;float&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>education <span class="op">=</span> {<span class="st">&#39;Bachelor degree&#39;</span>: <span class="dv">16</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Some college or Associate degree&#39;</span>: <span class="dv">14</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Graduate degree&#39;</span>: <span class="dv">18</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;High school degree&#39;</span>: <span class="dv">12</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Less than high school degree&#39;</span>: <span class="dv">10</span>}</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>df_atleast1[<span class="st">&#39;education_numeric&#39;</span>] <span class="op">=</span> df_atleast1[<span class="st">&#39;Education&#39;</span>].<span class="bu">map</span>(education)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#I drop &quot;Education&quot; later</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">seen_Episode I</th>
-<th data-quarto-table-cell-role="th">seen_Episode II</th>
-<th data-quarto-table-cell-role="th">seen_Episode III</th>
-<th data-quarto-table-cell-role="th">seen_Episode IV</th>
-<th data-quarto-table-cell-role="th">seen_Episode V</th>
-<th data-quarto-table-cell-role="th">seen_Episode VI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1180</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1181</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1182</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1184</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1185</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-</tbody>
-</table>
-
-<p>835 rows × 6 columns</p>
 </div>
-</div>
-</div>
-<div id="771bdb57" class="cell" data-execution_count="11">
+<p>Trying to convert the “seen” columns to 0’s and 1’s</p>
+<div id="a87f7227" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_atleast1 <span class="op">=</span> df_atleast1.replace({<span class="vs">r&quot;Episode I&quot;</span>:<span class="dv">1</span>, <span class="vs">r&quot;Episode V&quot;</span>:<span class="dv">1</span>}, regex <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].notna()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_atleast1[df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;seen_&quot;</span>).columns]<span class="op">=</span> df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;^seen&quot;</span>).fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].astype(<span class="st">&#39;float&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="24366197" class="cell" data-execution_count="12">
+<div id="96314aa2" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;^seen&quot;</span>).fillna(<span class="dv">0</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_atleast1 <span class="op">=</span> df_atleast1.replace({<span class="vs">r&quot;Episode I&quot;</span>:<span class="dv">1</span>, <span class="vs">r&quot;Episode V&quot;</span>:<span class="dv">1</span>}, regex <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df_atleast1[df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;seen_&quot;</span>).columns]<span class="op">=</span> df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;^seen&quot;</span>).fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="eef06908" class="cell" data-execution_count="13">
+<div id="c9e58b9e" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[ : , <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[ : , <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].applymap(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> pd.notna(x) <span class="cf">else</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;^seen&quot;</span>).fillna(<span class="dv">0</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="f38398ac" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[ : , <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[ : , <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].applymap(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> pd.notna(x) <span class="cf">else</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Convert the favorability ratings to numeric</p>
-<div id="fddbd3cf" class="cell" data-execution_count="14">
+<div id="df549754" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fav_dict <span class="op">=</span> {<span class="st">&#39;Very favorably&#39;</span>: <span class="dv">5</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Somewhat favorably&#39;</span>: <span class="dv">4</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Neither favorably nor unfavorably (neutral)&#39;</span>: <span class="dv">3</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Unfamiliar (N/A)&#39;</span>: <span class="dv">3</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Somewhat unfavorably&#39;</span>: <span class="dv">2</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Very unfavorably&#39;</span>: <span class="dv">1</span>}</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>df_fav <span class="op">=</span> df_atleast1.replace(fav_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fav_dict <span class="op">=</span> {<span class="st">&#39;Very favorably&#39;</span>: <span class="dv">5</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Somewhat favorably&#39;</span>: <span class="dv">4</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Neither favorably nor unfavorably (neutral)&#39;</span>: <span class="dv">3</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Unfamiliar (N/A)&#39;</span>: <span class="dv">3</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Somewhat unfavorably&#39;</span>: <span class="dv">2</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Very unfavorably&#39;</span>: <span class="dv">1</span>}</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>df_fav <span class="op">=</span> df_atleast1.replace(fav_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>One hot all the remaining categorical variables</p>
-<div id="bd624e5e" class="cell" data-execution_count="15">
+<div id="a4bf6772" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_fav2 <span class="op">=</span> df_fav.drop([<span class="st">&#39;income2&#39;</span>, <span class="st">&#39;Education&#39;</span>, <span class="st">&#39;Household Income&#39;</span>, <span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Do you consider yourself to be a fan of the Expanded Universe?&#39;</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df_dummy <span class="op">=</span> pd.get_dummies(df_fav2, columns <span class="op">=</span> df_fav2.select_dtypes(include <span class="op">=</span> <span class="st">&quot;object&quot;</span>).columns).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_fav2 <span class="op">=</span> df_fav.drop([<span class="st">&#39;income2&#39;</span>, <span class="st">&#39;Education&#39;</span>, <span class="st">&#39;Household Income&#39;</span>, <span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Do you consider yourself to be a fan of the Expanded Universe?&#39;</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df_dummy <span class="op">=</span> pd.get_dummies(df_fav2, columns <span class="op">=</span> df_fav2.select_dtypes(include <span class="op">=</span> <span class="st">&quot;object&quot;</span>).columns).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Create our target variable</p>
-<div id="359b22d6" class="cell" data-execution_count="16">
+<div id="109fd721" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_income_present <span class="op">=</span> df_dummy.dropna(subset <span class="op">=</span> <span class="st">&#39;income&#39;</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df_income_present[<span class="st">&#39;over50&#39;</span>] <span class="op">=</span> (df_income_present[<span class="st">&#39;income&#39;</span>] <span class="op">&gt;=</span><span class="dv">50</span>).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_income_present <span class="op">=</span> df_dummy.dropna(subset <span class="op">=</span> <span class="st">&#39;income&#39;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df_income_present[<span class="st">&#39;over50&#39;</span>] <span class="op">=</span> (df_income_present[<span class="st">&#39;income&#39;</span>] <span class="op">&gt;=</span><span class="dv">50</span>).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -4584,16 +3869,16 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="questiontask-3">QUESTION|TASK 3</h2>
 <p><strong>Validate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="b0f65988" class="cell" data-execution_count="17">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="fbf090d1" class="cell" data-execution_count="18">
+<div id="46f46c26" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="950bc6a2" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -4601,10 +3886,10 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="questiontask-4">QUESTION|TASK 4</h2>
 <p><strong>Build a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="d1bb01d4" class="cell" data-execution_count="19">
+<div id="b1f0b656" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <hr>
@@ -4613,10 +3898,10 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="stretch-questiontask-1">STRETCH QUESTION|TASK 1</h2>
 <p><strong>Build a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="74b1ada7" class="cell" data-execution_count="20">
+<div id="15db5d12" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -4624,10 +3909,10 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="stretch-questiontask-2">STRETCH QUESTION|TASK 2</h2>
 <p><strong>Validate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="b1f6e7c2" class="cell" data-execution_count="21">
+<div id="acc6be6b" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -4635,10 +3920,10 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="stretch-questiontask-3">STRETCH QUESTION|TASK 3</h2>
 <p><strong>Create a new column that converts the location groupings to a single number. Drop the location categorical column.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="b25d7adc" class="cell" data-execution_count="22">
+<div id="95331e7f" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <hr>
