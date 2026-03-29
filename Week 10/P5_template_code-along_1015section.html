@@ -3132,7 +3132,7 @@ vertical-align: -.125em;
   <li><a href="#stretch-questiontask-3" id="toc-stretch-questiontask-3">STRETCH QUESTION|TASK 3</a></li>
   </ul>
 </nav>
-<div id="9dde7bae" class="cell" data-execution_count="1">
+<div id="ebcc0cb0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
@@ -3143,7 +3143,7 @@ vertical-align: -.125em;
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="e7e68db2" class="cell" data-execution_count="2">
+<div id="c0be26b0" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df = pd.read_csv(&quot;https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv&quot;, encoding = &quot;ISO-8859-1&quot;)</span></span>
@@ -3412,7 +3412,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="e89dd19a" class="cell" data-execution_count="3">
+<div id="f2280d04" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv&quot;</span>, encoding_errors <span class="op">=</span> <span class="st">&quot;ignore&quot;</span>, skiprows <span class="op">=</span> <span class="dv">2</span>, names <span class="op">=</span> df_cols[<span class="st">&#39;newnames&#39;</span>])</span>
@@ -3731,17 +3731,34 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="questiontask-1">QUESTION|TASK 1</h2>
 <p><strong>Shorten the column names and clean them up for easier use with pandas.</strong> Provide a table or list that exemplifies how you fixed the names.</p>
 <p>I hard coded some shorter titles using iloc[] and used regex to work with the movie title</p>
-<div id="d89058d1" class="cell" data-execution_count="4">
+<div id="4b6ce89a" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cleaned names</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cleaned <span class="op">=</span> df.columns.tolist()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cleaned <span class="op">=</span> df.columns</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[&#39;RespondentID&#39;, &#39;Have you seen any of the 6 films in the Star Wars franchise?&#39;, &#39;Do you consider yourself to be a fan of the Star Wars film franchise?&#39;, &#39;seen_Episode I&#39;, &#39;seen_Episode II&#39;, &#39;seen_Episode III&#39;, &#39;seen_Episode IV&#39;, &#39;seen_Episode V&#39;, &#39;seen_Episode VI&#39;, &#39;rank_Episode I&#39;, &#39;rank_Episode II&#39;, &#39;rank_Episode III&#39;, &#39;rank_Episode IV&#39;, &#39;rank_Episode V&#39;, &#39;rank_Episode VI&#39;, &#39;fav_Han Solo&#39;, &#39;fav_Luke Skywalker&#39;, &#39;fav_Princess Leia Organa&#39;, &#39;fav_Anakin Skywalker&#39;, &#39;fav_Obi Wan Kenobi&#39;, &#39;fav_Emperor Palpatine&#39;, &#39;fav_Darth Vader&#39;, &#39;fav_Lando Calrissian&#39;, &#39;fav_Boba Fett&#39;, &#39;fav_C-3P0&#39;, &#39;fav_R2 D2&#39;, &#39;fav_Jar Jar Binks&#39;, &#39;fav_Padme Amidala&#39;, &#39;fav_Yoda&#39;, &#39;Which character shot first?&#39;, &#39;Are you familiar with the Expanded Universe?&#39;, &#39;Do you consider yourself to be a fan of the Expanded Universe?&#39;, &#39;Do you consider yourself to be a fan of the Star Trek franchise?&#39;, &#39;Gender&#39;, &#39;Age&#39;, &#39;Household Income&#39;, &#39;Education&#39;, &#39;Location (Census Region)&#39;]</code></pre>
+<pre><code>Index([&#39;RespondentID&#39;,
+       &#39;Have you seen any of the 6 films in the Star Wars franchise?&#39;,
+       &#39;Do you consider yourself to be a fan of the Star Wars film franchise?&#39;,
+       &#39;seen_Episode I&#39;, &#39;seen_Episode II&#39;, &#39;seen_Episode III&#39;,
+       &#39;seen_Episode IV&#39;, &#39;seen_Episode V&#39;, &#39;seen_Episode VI&#39;,
+       &#39;rank_Episode I&#39;, &#39;rank_Episode II&#39;, &#39;rank_Episode III&#39;,
+       &#39;rank_Episode IV&#39;, &#39;rank_Episode V&#39;, &#39;rank_Episode VI&#39;, &#39;fav_Han Solo&#39;,
+       &#39;fav_Luke Skywalker&#39;, &#39;fav_Princess Leia Organa&#39;,
+       &#39;fav_Anakin Skywalker&#39;, &#39;fav_Obi Wan Kenobi&#39;, &#39;fav_Emperor Palpatine&#39;,
+       &#39;fav_Darth Vader&#39;, &#39;fav_Lando Calrissian&#39;, &#39;fav_Boba Fett&#39;, &#39;fav_C-3P0&#39;,
+       &#39;fav_R2 D2&#39;, &#39;fav_Jar Jar Binks&#39;, &#39;fav_Padme Amidala&#39;, &#39;fav_Yoda&#39;,
+       &#39;Which character shot first?&#39;,
+       &#39;Are you familiar with the Expanded Universe?&#39;,
+       &#39;Do you consider yourself to be a fan of the Expanded Universe?&#39;,
+       &#39;Do you consider yourself to be a fan of the Star Trek franchise?&#39;,
+       &#39;Gender&#39;, &#39;Age&#39;, &#39;Household Income&#39;, &#39;Education&#39;,
+       &#39;Location (Census Region)&#39;],
+      dtype=&#39;object&#39;)</code></pre>
 </div>
 </div>
 </section>
@@ -3755,7 +3772,7 @@ a. Create a new column that converts the income ranges to a single number. Drop 
 a. Create your target (also known as “y” or “label”) column based on the new income range column<br>
 a. One-hot encode all remaining categorical columns</p>
 <p>Filter the dataset to respondents that have seen at least one film</p>
-<div id="81744b9b" class="cell" data-execution_count="5">
+<div id="64e07038" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3763,7 +3780,7 @@ a. One-hot encode all remaining categorical columns</p>
 </details>
 </div>
 <p>Convert age to a numeric variable</p>
-<div id="b303d506" class="cell" data-execution_count="7">
+<div id="f69d7532" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>age_replace <span class="op">=</span> {<span class="st">&#39;45-60&#39;</span>: <span class="dv">52</span>, <span class="st">&#39;&gt; 60&#39;</span>: <span class="dv">65</span>, <span class="st">&#39;30-44&#39;</span>: <span class="dv">37</span>, <span class="st">&#39;18-29&#39;</span>: <span class="fl">23.5</span>}</span>
@@ -3773,7 +3790,7 @@ a. One-hot encode all remaining categorical columns</p>
 </details>
 </div>
 <p>Convert income to a numeric variable</p>
-<div id="f8ae3467" class="cell" data-execution_count="8">
+<div id="b0b7046b" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3786,7 +3803,7 @@ a. One-hot encode all remaining categorical columns</p>
 </details>
 </div>
 <p>Convert Education to numeric variable</p>
-<div id="d7a68956" class="cell" data-execution_count="9">
+<div id="6097fdad" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3802,7 +3819,7 @@ a. One-hot encode all remaining categorical columns</p>
 </details>
 </div>
 <p>Trying to convert the “seen” columns to 0’s and 1’s</p>
-<div id="a87f7227" class="cell" data-execution_count="10">
+<div id="81652e9f" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3811,7 +3828,7 @@ a. One-hot encode all remaining categorical columns</p>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[:, <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].astype(<span class="st">&#39;float&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="96314aa2" class="cell" data-execution_count="11">
+<div id="ef1ec5c7" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3820,20 +3837,20 @@ a. One-hot encode all remaining categorical columns</p>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df_atleast1[df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;seen_&quot;</span>).columns]<span class="op">=</span> df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;^seen&quot;</span>).fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="c9e58b9e" class="cell" data-execution_count="12">
+<div id="5d05c0f8" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_atleast1.<span class="bu">filter</span>(regex <span class="op">=</span> <span class="st">&quot;^seen&quot;</span>).fillna(<span class="dv">0</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="f38398ac" class="cell" data-execution_count="13">
+<div id="ed5e7a67" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_atleast1.loc[ : , <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>] <span class="op">=</span> df_atleast1.loc[ : , <span class="st">&#39;seen_Episode I&#39;</span>:<span class="st">&#39;seen_Episode VI&#39;</span>].applymap(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> pd.notna(x) <span class="cf">else</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Convert the favorability ratings to numeric</p>
-<div id="df549754" class="cell" data-execution_count="14">
+<div id="21d1d70e" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fav_dict <span class="op">=</span> {<span class="st">&#39;Very favorably&#39;</span>: <span class="dv">5</span>,</span>
@@ -3847,7 +3864,7 @@ a. One-hot encode all remaining categorical columns</p>
 </details>
 </div>
 <p>One hot all the remaining categorical variables</p>
-<div id="a4bf6772" class="cell" data-execution_count="15">
+<div id="d6aeb7ce" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_fav2 <span class="op">=</span> df_fav.drop([<span class="st">&#39;income2&#39;</span>, <span class="st">&#39;Education&#39;</span>, <span class="st">&#39;Household Income&#39;</span>, <span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Do you consider yourself to be a fan of the Expanded Universe?&#39;</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
@@ -3856,7 +3873,7 @@ a. One-hot encode all remaining categorical columns</p>
 </details>
 </div>
 <p>Create our target variable</p>
-<div id="109fd721" class="cell" data-execution_count="16">
+<div id="3d3e2200" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_income_present <span class="op">=</span> df_dummy.dropna(subset <span class="op">=</span> <span class="st">&#39;income&#39;</span>)</span>
@@ -3869,13 +3886,13 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="questiontask-3">QUESTION|TASK 3</h2>
 <p><strong>Validate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="46f46c26" class="cell" data-execution_count="17">
+<div id="3601f1b8" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="950bc6a2" class="cell" data-execution_count="18">
+<div id="7263304d" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3886,7 +3903,7 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="questiontask-4">QUESTION|TASK 4</h2>
 <p><strong>Build a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="b1f0b656" class="cell" data-execution_count="19">
+<div id="bb69661e" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3898,7 +3915,7 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="stretch-questiontask-1">STRETCH QUESTION|TASK 1</h2>
 <p><strong>Build a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="15db5d12" class="cell" data-execution_count="20">
+<div id="17a04521" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3909,7 +3926,7 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="stretch-questiontask-2">STRETCH QUESTION|TASK 2</h2>
 <p><strong>Validate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="acc6be6b" class="cell" data-execution_count="21">
+<div id="ba99395b" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3920,7 +3937,7 @@ a. One-hot encode all remaining categorical columns</p>
 <h2 class="anchored" data-anchor-id="stretch-questiontask-3">STRETCH QUESTION|TASK 3</h2>
 <p><strong>Create a new column that converts the location groupings to a single number. Drop the location categorical column.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="95331e7f" class="cell" data-execution_count="22">
+<div id="e333a600" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
