@@ -3131,7 +3131,7 @@ vertical-align: -.125em;
   <li><a href="#stretch-questiontask-1" id="toc-stretch-questiontask-1">STRETCH QUESTION|TASK 1</a></li>
   </ul>
 </nav>
-<div id="277bc2bc" class="cell" data-execution_count="1">
+<div id="8182cf74" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -3141,7 +3141,7 @@ vertical-align: -.125em;
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="1b895813" class="cell" data-execution_count="2">
+<div id="a270de55" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html</span></span>
@@ -3159,15 +3159,15 @@ vertical-align: -.125em;
 <section id="questiontask-1" class="level2">
 <h2 class="anchored" data-anchor-id="questiontask-1">QUESTION|TASK 1</h2>
 <p><strong>Fix all of the varied missing data types in the data to be consistent (all missing values should be displayed as “NaN”).</strong> In your report include one record example (one row) from your new data, in the raw JSON format. Your example should display the “NaN” for at least one missing value.__</p>
-<p><em>type your results and analysis here</em></p>
-<div id="b6c83509" class="cell" data-execution_count="3">
+<p>Shows the first record from the table in JSON. “num_of_delays_late_aircraft” shows a “NaN” value.</p>
+<div id="fd4ef972" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df.replace([np.nan,<span class="st">&#39;null&#39;</span>,<span class="va">None</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">999</span>, <span class="st">&quot;Unknown&quot;</span>, <span class="st">&quot;n/a&quot;</span>], <span class="st">&#39;NaN&#39;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace([np.nan,<span class="st">&#39;null&#39;</span>,<span class="va">None</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">999</span>, <span class="st">&quot;Unknown&quot;</span>, <span class="st">&quot;n/a&quot;</span>], <span class="st">&#39;NaN&#39;</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Using double brackets [[]] makes the row print in table format.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> df.head(<span class="dv">10</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> df.head(<span class="dv">1</span>)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sample_display <span class="op">=</span> sample.fillna(<span class="st">&quot;NaN&quot;</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>json_output <span class="op">=</span> sample_display.to_json(orient<span class="op">=</span><span class="st">&quot;records&quot;</span>, indent<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3181,7 +3181,7 @@ vertical-align: -.125em;
     &quot;year&quot;:2005.0,
     &quot;num_of_flights_total&quot;:35048,
     &quot;num_of_delays_carrier&quot;:&quot;1500+&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:-999,
+    &quot;num_of_delays_late_aircraft&quot;:&quot;NaN&quot;,
     &quot;num_of_delays_nas&quot;:4598,
     &quot;num_of_delays_security&quot;:10,
     &quot;num_of_delays_weather&quot;:448,
@@ -3192,177 +3192,6 @@ vertical-align: -.125em;
     &quot;minutes_delayed_security&quot;:297,
     &quot;minutes_delayed_weather&quot;:36931,
     &quot;minutes_delayed_total&quot;:465533
-  },
-  {
-    &quot;airport_code&quot;:&quot;DEN&quot;,
-    &quot;airport_name&quot;:&quot;Denver, CO: Denver International&quot;,
-    &quot;month&quot;:&quot;January&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:12687,
-    &quot;num_of_delays_carrier&quot;:&quot;1041&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:928,
-    &quot;num_of_delays_nas&quot;:935,
-    &quot;num_of_delays_security&quot;:11,
-    &quot;num_of_delays_weather&quot;:233,
-    &quot;num_of_delays_total&quot;:3153,
-    &quot;minutes_delayed_carrier&quot;:53537.0,
-    &quot;minutes_delayed_late_aircraft&quot;:70301,
-    &quot;minutes_delayed_nas&quot;:36817.0,
-    &quot;minutes_delayed_security&quot;:363,
-    &quot;minutes_delayed_weather&quot;:21779,
-    &quot;minutes_delayed_total&quot;:182797
-  },
-  {
-    &quot;airport_code&quot;:&quot;IAD&quot;,
-    &quot;airport_name&quot;:&quot;&quot;,
-    &quot;month&quot;:&quot;January&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:12381,
-    &quot;num_of_delays_carrier&quot;:&quot;414&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:1058,
-    &quot;num_of_delays_nas&quot;:895,
-    &quot;num_of_delays_security&quot;:4,
-    &quot;num_of_delays_weather&quot;:61,
-    &quot;num_of_delays_total&quot;:2430,
-    &quot;minutes_delayed_carrier&quot;:&quot;NaN&quot;,
-    &quot;minutes_delayed_late_aircraft&quot;:70919,
-    &quot;minutes_delayed_nas&quot;:35660.0,
-    &quot;minutes_delayed_security&quot;:208,
-    &quot;minutes_delayed_weather&quot;:4497,
-    &quot;minutes_delayed_total&quot;:134881
-  },
-  {
-    &quot;airport_code&quot;:&quot;ORD&quot;,
-    &quot;airport_name&quot;:&quot;Chicago, IL: Chicago O&#39;Hare International&quot;,
-    &quot;month&quot;:&quot;January&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:28194,
-    &quot;num_of_delays_carrier&quot;:&quot;1197&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:2255,
-    &quot;num_of_delays_nas&quot;:5415,
-    &quot;num_of_delays_security&quot;:5,
-    &quot;num_of_delays_weather&quot;:306,
-    &quot;num_of_delays_total&quot;:9178,
-    &quot;minutes_delayed_carrier&quot;:88691.0,
-    &quot;minutes_delayed_late_aircraft&quot;:160811,
-    &quot;minutes_delayed_nas&quot;:364382.0,
-    &quot;minutes_delayed_security&quot;:151,
-    &quot;minutes_delayed_weather&quot;:24859,
-    &quot;minutes_delayed_total&quot;:638894
-  },
-  {
-    &quot;airport_code&quot;:&quot;SAN&quot;,
-    &quot;airport_name&quot;:&quot;San Diego, CA: San Diego International&quot;,
-    &quot;month&quot;:&quot;January&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:7283,
-    &quot;num_of_delays_carrier&quot;:&quot;572&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:680,
-    &quot;num_of_delays_nas&quot;:638,
-    &quot;num_of_delays_security&quot;:7,
-    &quot;num_of_delays_weather&quot;:56,
-    &quot;num_of_delays_total&quot;:1952,
-    &quot;minutes_delayed_carrier&quot;:27436.0,
-    &quot;minutes_delayed_late_aircraft&quot;:38445,
-    &quot;minutes_delayed_nas&quot;:21127.0,
-    &quot;minutes_delayed_security&quot;:218,
-    &quot;minutes_delayed_weather&quot;:4326,
-    &quot;minutes_delayed_total&quot;:91552
-  },
-  {
-    &quot;airport_code&quot;:&quot;SFO&quot;,
-    &quot;airport_name&quot;:&quot;San Francisco, CA: San Francisco International&quot;,
-    &quot;month&quot;:&quot;January&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:10274,
-    &quot;num_of_delays_carrier&quot;:&quot;798&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:733,
-    &quot;num_of_delays_nas&quot;:1166,
-    &quot;num_of_delays_security&quot;:7,
-    &quot;num_of_delays_weather&quot;:114,
-    &quot;num_of_delays_total&quot;:2816,
-    &quot;minutes_delayed_carrier&quot;:41570.0,
-    &quot;minutes_delayed_late_aircraft&quot;:47705,
-    &quot;minutes_delayed_nas&quot;:60380.0,
-    &quot;minutes_delayed_security&quot;:247,
-    &quot;minutes_delayed_weather&quot;:7373,
-    &quot;minutes_delayed_total&quot;:157275
-  },
-  {
-    &quot;airport_code&quot;:&quot;SLC&quot;,
-    &quot;airport_name&quot;:&quot;Salt Lake City, UT: Salt Lake City International&quot;,
-    &quot;month&quot;:&quot;January&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:12000,
-    &quot;num_of_delays_carrier&quot;:&quot;817&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:564,
-    &quot;num_of_delays_nas&quot;:864,
-    &quot;num_of_delays_security&quot;:13,
-    &quot;num_of_delays_weather&quot;:270,
-    &quot;num_of_delays_total&quot;:2525,
-    &quot;minutes_delayed_carrier&quot;:36252.0,
-    &quot;minutes_delayed_late_aircraft&quot;:30557,
-    &quot;minutes_delayed_nas&quot;:35977.0,
-    &quot;minutes_delayed_security&quot;:327,
-    &quot;minutes_delayed_weather&quot;:27219,
-    &quot;minutes_delayed_total&quot;:130332
-  },
-  {
-    &quot;airport_code&quot;:&quot;ATL&quot;,
-    &quot;airport_name&quot;:&quot;Atlanta, GA: Hartsfield-Jackson Atlanta International&quot;,
-    &quot;month&quot;:&quot;Febuary&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:33702,
-    &quot;num_of_delays_carrier&quot;:&quot;1288&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:-999,
-    &quot;num_of_delays_nas&quot;:6104,
-    &quot;num_of_delays_security&quot;:2,
-    &quot;num_of_delays_weather&quot;:399,
-    &quot;num_of_delays_total&quot;:9195,
-    &quot;minutes_delayed_carrier&quot;:86876.0,
-    &quot;minutes_delayed_late_aircraft&quot;:86698,
-    &quot;minutes_delayed_nas&quot;:321969.0,
-    &quot;minutes_delayed_security&quot;:36,
-    &quot;minutes_delayed_weather&quot;:31944,
-    &quot;minutes_delayed_total&quot;:527523
-  },
-  {
-    &quot;airport_code&quot;:&quot;DEN&quot;,
-    &quot;airport_name&quot;:&quot;Denver, CO: Denver International&quot;,
-    &quot;month&quot;:&quot;Febuary&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:11480,
-    &quot;num_of_delays_carrier&quot;:&quot;729&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:432,
-    &quot;num_of_delays_nas&quot;:581,
-    &quot;num_of_delays_security&quot;:4,
-    &quot;num_of_delays_weather&quot;:42,
-    &quot;num_of_delays_total&quot;:1788,
-    &quot;minutes_delayed_carrier&quot;:33205.0,
-    &quot;minutes_delayed_late_aircraft&quot;:26228,
-    &quot;minutes_delayed_nas&quot;:16864.0,
-    &quot;minutes_delayed_security&quot;:271,
-    &quot;minutes_delayed_weather&quot;:2781,
-    &quot;minutes_delayed_total&quot;:79349
-  },
-  {
-    &quot;airport_code&quot;:&quot;IAD&quot;,
-    &quot;airport_name&quot;:&quot;Washington, DC: Washington Dulles International&quot;,
-    &quot;month&quot;:&quot;Febuary&quot;,
-    &quot;year&quot;:2005.0,
-    &quot;num_of_flights_total&quot;:10042,
-    &quot;num_of_delays_carrier&quot;:&quot;284&quot;,
-    &quot;num_of_delays_late_aircraft&quot;:631,
-    &quot;num_of_delays_nas&quot;:691,
-    &quot;num_of_delays_security&quot;:4,
-    &quot;num_of_delays_weather&quot;:28,
-    &quot;num_of_delays_total&quot;:1639,
-    &quot;minutes_delayed_carrier&quot;:15573.0,
-    &quot;minutes_delayed_late_aircraft&quot;:39840,
-    &quot;minutes_delayed_nas&quot;:&quot;NaN&quot;,
-    &quot;minutes_delayed_security&quot;:169,
-    &quot;minutes_delayed_weather&quot;:1359,
-    &quot;minutes_delayed_total&quot;:78878
   }
 ]</code></pre>
 </div>
@@ -3372,7 +3201,7 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="questiontask-2">QUESTION|TASK 2</h2>
 <p><strong>Which airport has the worst delays?</strong> Describe the metric you chose, and why you chose it to determine the “worst” airport. Your answer should include a summary table that lists (for each airport) the total number of flights, total number of delayed flights, proportion of delayed flights, and average delay time in hours.</p>
 <p>I chose the duration of the delay because that information would tell me the average magnitude of how bad each delay was. I found this by referencing the minutes_delayed_total.</p>
-<div id="d910931c" class="cell" data-execution_count="4">
+<div id="0ac9b5e1" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3513,29 +3342,38 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="questiontask-3">QUESTION|TASK 3</h2>
 <p><strong>What is the best month to fly if you want to avoid delays of any length?</strong> Describe the metric you chose and why you chose it to calculate your answer. Include one chart to help support your answer, with the x-axis ordered by month. (To answer this question, you will need to remove any rows that are missing the <code>Month</code> variable.)</p>
 <p><em>type your results and analysis here</em></p>
-<div id="558bb588" class="cell" data-execution_count="5">
+<div id="14b38af4" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">&quot;month&quot;</span>].notna() <span class="op">&amp;</span> (df[<span class="st">&quot;month&quot;</span>].notna() <span class="op">&amp;</span> df[<span class="st">&quot;month&quot;</span>] <span class="op">!=</span> <span class="st">&quot;NaN&quot;</span>)]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_filtered</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df_filtered.groupby(<span class="st">&quot;month&quot;</span>).agg(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  Total_Flights<span class="op">=</span>(<span class="st">&quot;num_of_flights_total&quot;</span>, <span class="st">&quot;sum&quot;</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  Total_Delayed_Flights<span class="op">=</span>(<span class="st">&quot;num_of_delays_total&quot;</span>,<span class="st">&quot;sum&quot;</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">&quot;Proportion_Delayed_Flights&quot;</span>] <span class="op">=</span> (</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  summary[<span class="st">&quot;Total_Delayed_Flights&quot;</span>] <span class="op">/</span> summary[<span class="st">&quot;Total_Flights&quot;</span>]</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summary.<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">&quot;month&quot;</span>] <span class="op">=</span> pd.Categorical(summary[<span class="st">&quot;month&quot;</span>], categories<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">13</span>), ordered<span class="op">=</span><span class="va">True</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mapping json for the map() function</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>month_map <span class="op">=</span> {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;January&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;February&quot;</span>: <span class="dv">2</span>, <span class="st">&quot;March&quot;</span>: <span class="dv">3</span>, <span class="st">&quot;April&quot;</span>: <span class="dv">4</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;May&quot;</span>: <span class="dv">5</span>, <span class="st">&quot;June&quot;</span>: <span class="dv">6</span>, <span class="st">&quot;July&quot;</span>: <span class="dv">7</span>, <span class="st">&quot;August&quot;</span>: <span class="dv">8</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;September&quot;</span>: <span class="dv">9</span>, <span class="st">&quot;October&quot;</span>: <span class="dv">10</span>, <span class="st">&quot;November&quot;</span>: <span class="dv">11</span>, <span class="st">&quot;December&quot;</span>: <span class="dv">12</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Insert df_filtered code here</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df_filtered.groupby(<span class="st">&quot;month&quot;</span>).agg(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  Total_Flights<span class="op">=</span>(<span class="st">&quot;num_of_flights_total&quot;</span>, <span class="st">&quot;sum&quot;</span>),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  Total_Delayed_Flights<span class="op">=</span>(<span class="st">&quot;num_of_delays_total&quot;</span>,<span class="st">&quot;sum&quot;</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  ggplot(data<span class="op">=</span>summary, mapping<span class="op">=</span> aes(x<span class="op">=</span><span class="st">&#39;month&#39;</span>, y<span class="op">=</span><span class="st">&#39;Proportion_Delayed_Flights&#39;</span>)) <span class="op">+</span> geom_bar(stat<span class="op">=</span><span class="st">&#39;identity&#39;</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">&quot;Proportion_Delayed_Flights&quot;</span>] <span class="op">=</span> (</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  summary[<span class="st">&quot;Total_Delayed_Flights&quot;</span>] <span class="op">/</span> summary[<span class="st">&quot;Total_Flights&quot;</span>]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># summary = summary.round(2)</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">&quot;month&quot;</span>] <span class="op">=</span> summary[<span class="st">&quot;month&quot;</span>].<span class="bu">map</span>(month_map)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">&quot;month&quot;</span>] <span class="op">=</span> pd.Categorical(summary[<span class="st">&quot;month&quot;</span>], categories<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">13</span>), ordered<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summary.sort_values(<span class="st">&quot;month&quot;</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  ggplot(data<span class="op">=</span>summary, mapping<span class="op">=</span> aes(x<span class="op">=</span><span class="st">&#39;month&#39;</span>, y<span class="op">=</span><span class="st">&#39;Proportion_Delayed_Flights&#39;</span>)) <span class="op">+</span> geom_bar(stat<span class="op">=</span><span class="st">&#39;identity&#39;</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 
@@ -3546,13 +3384,13 @@ vertical-align: -.125em;
 //# sourceMappingURL=js-package.js.map</script>
    
    
-          <div id="RBYFMs"></div>
+          <div id="7nqZcl"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
    // ----------
    
-   var containerDiv = document.getElementById("RBYFMs");
+   var containerDiv = document.getElementById("7nqZcl");
    var observer = new ResizeObserver(function(entries) {
        for (let entry of entries) {
            var width = containerDiv.clientWidth
@@ -3566,8 +3404,8 @@ vertical-align: -.125em;
 
                var plotSpec={
 "data":{
-"month":[null,null,null,null,null,null,null,null,null,null,null,null,null],
-"Proportion_Delayed_Flights":[0.18,0.21,0.26,0.22,0.22,0.23,0.24,0.21,0.19,0.17,0.18,0.16,0.22]
+"month":[1.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,null,null],
+"Proportion_Delayed_Flights":[0.22212657311121878,0.20615475905947897,0.18369752715477927,0.19017344100603115,0.24347400516059656,0.23325102916658466,0.20948756626556558,0.1645238622955522,0.18067288869494136,0.1668317257645723,0.2568318650351866,0.2222888402547378,0.2159479369138761]
 },
 "mapping":{
 "x":"month",
@@ -3646,40 +3484,106 @@ vertical-align: -.125em;
 <pre><code>a. 100% of delayed flights in the Weather category are due to weather  
 a. 30% of all delayed flights in the Late-Arriving category are due to weather  
 a. From April to August, 40% of delayed flights in the NAS category are due to weather. The rest of the months, the proportion rises to 65%    </code></pre>
-<p><em>type your results and analysis here</em> Don’t bother checking the below cell. It doesn’t work:)</p>
-<div id="b64fbe9b" class="cell" data-execution_count="6">
+<p><em>type your results and analysis here</em></p>
+<div id="43b4ca52" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Array for weather delay calculation later</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>summer_months <span class="op">=</span> [<span class="st">&quot;April&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;June&quot;</span>, <span class="st">&quot;July&quot;</span>, <span class="st">&quot;August&quot;</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where &#39;Month&#39; is missing</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># df.info()</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># df = df.dropna(subset=[&#39;Month&#39;])</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># df.info()</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert empty values to overall mean  </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>].replace(<span class="st">&quot;NaN&quot;</span>, np.nan)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>].fillna(df[<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>].mean())</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># df[&#39;Month&#39;] = pd.to_numeric(df[&#39;Month&#39;], errors=&#39;coerce&#39;)</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # Group by &#39;Month&#39; and sum &#39;num_of_delays_total&#39;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># monthly_delays = df.groupby(&#39;Month&#39;)[&#39;num_of_delays_total&#39;].sum().reset_index()</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># # Sort by Month (ensuring correct order for visualization)</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># monthly_delays = monthly_delays.sort_values(&#39;Month&#39;)</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># # Find the best month with the **lowest** number of delays</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># best_month = monthly_delays.loc[monthly_delays[&#39;num_of_delays_total&#39;].idxmin(), &#39;Month&#39;]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Conditional to account for weather delays</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;nas_weather&quot;</span>] <span class="op">=</span> np.where(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;month&quot;</span>].isin(summer_months),    <span class="co">#condition</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;num_of_delays_nas&quot;</span>] <span class="op">*</span> <span class="fl">0.40</span>,     <span class="co">#if true</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;num_of_delays_nas&quot;</span>] <span class="op">*</span> <span class="fl">0.65</span>      <span class="co">#otherwise</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;nas_weather&quot;</span>].head(<span class="dv">5</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where &#39;Month&#39; is missing</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>df.info()</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">&#39;month&#39;</span>])</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>df.info()</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># df[&#39;Month&#39;] = pd.to_numeric(df[&#39;Month&#39;], errors=&#39;coerce&#39;)</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># # Group by &#39;Month&#39; and sum &#39;num_of_delays_total&#39;</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>monthly_delays <span class="op">=</span> df.groupby(<span class="st">&#39;month&#39;</span>)[<span class="st">&#39;num_of_delays_total&#39;</span>].<span class="bu">sum</span>().reset_index()</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># # Sort by Month (ensuring correct order for visualization)</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>monthly_delays <span class="op">=</span> monthly_delays.sort_values(<span class="st">&#39;month&#39;</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># # Find the best month with the **lowest** number of delays</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>best_month <span class="op">=</span> monthly_delays.loc[monthly_delays[<span class="st">&#39;num_of_delays_total&#39;</span>].idxmin(), <span class="st">&#39;month&#39;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 924 entries, 0 to 923
+Data columns (total 18 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   airport_code                   924 non-null    object 
+ 1   airport_name                   924 non-null    object 
+ 2   month                          924 non-null    object 
+ 3   year                           924 non-null    object 
+ 4   num_of_flights_total           924 non-null    int64  
+ 5   num_of_delays_carrier          924 non-null    object 
+ 6   num_of_delays_late_aircraft    924 non-null    float64
+ 7   num_of_delays_nas              924 non-null    int64  
+ 8   num_of_delays_security         924 non-null    int64  
+ 9   num_of_delays_weather          924 non-null    int64  
+ 10  num_of_delays_total            924 non-null    int64  
+ 11  minutes_delayed_carrier        924 non-null    object 
+ 12  minutes_delayed_late_aircraft  924 non-null    int64  
+ 13  minutes_delayed_nas            924 non-null    object 
+ 14  minutes_delayed_security       924 non-null    int64  
+ 15  minutes_delayed_weather        924 non-null    int64  
+ 16  minutes_delayed_total          924 non-null    int64  
+ 17  nas_weather                    924 non-null    float64
+dtypes: float64(2), int64(9), object(7)
+memory usage: 130.1+ KB
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 924 entries, 0 to 923
+Data columns (total 18 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   airport_code                   924 non-null    object 
+ 1   airport_name                   924 non-null    object 
+ 2   month                          924 non-null    object 
+ 3   year                           924 non-null    object 
+ 4   num_of_flights_total           924 non-null    int64  
+ 5   num_of_delays_carrier          924 non-null    object 
+ 6   num_of_delays_late_aircraft    924 non-null    float64
+ 7   num_of_delays_nas              924 non-null    int64  
+ 8   num_of_delays_security         924 non-null    int64  
+ 9   num_of_delays_weather          924 non-null    int64  
+ 10  num_of_delays_total            924 non-null    int64  
+ 11  minutes_delayed_carrier        924 non-null    object 
+ 12  minutes_delayed_late_aircraft  924 non-null    int64  
+ 13  minutes_delayed_nas            924 non-null    object 
+ 14  minutes_delayed_security       924 non-null    int64  
+ 15  minutes_delayed_weather        924 non-null    int64  
+ 16  minutes_delayed_total          924 non-null    int64  
+ 17  nas_weather                    924 non-null    float64
+dtypes: float64(2), int64(9), object(7)
+memory usage: 130.1+ KB</code></pre>
 </div>
-<div id="54e4d36d" class="cell" data-execution_count="7">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div id="fa39021e" class="cell" data-execution_count="8">
+<div id="b0196196" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="b9b8d60d" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -3687,10 +3591,10 @@ a. From April to August, 40% of delayed flights in the NAS category are due to w
 <h2 class="anchored" data-anchor-id="questiontask-5">QUESTION|TASK 5</h2>
 <p><strong>Using the new weather variable calculated above, create a barplot showing the proportion of all flights that are delayed by weather at each airport. Describe what you learn from this graph.</strong></p>
 <p><em>type your results and analysis here</em></p>
-<div id="345260ab" class="cell" data-execution_count="9">
+<div id="028678d2" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <hr>
@@ -3699,10 +3603,10 @@ a. From April to August, 40% of delayed flights in the NAS category are due to w
 <h2 class="anchored" data-anchor-id="stretch-questiontask-1">STRETCH QUESTION|TASK 1</h2>
 <p><strong>Which delay is the worst delay?</strong> Create a similar analysis as above for Weahter Delay with: Carrier Delay and Security Delay. Compare the proportion of delay for each of the three categories in a Chart and a Table. Describe your results.</p>
 <p><em>type your results and analysis here</em></p>
-<div id="655862b4" class="cell" data-execution_count="10">
+<div id="88e0895d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <hr>
